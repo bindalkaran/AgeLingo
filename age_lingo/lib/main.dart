@@ -1,99 +1,104 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:age_lingo/screens/home_screen.dart';
-import 'package:age_lingo/screens/settings_screen.dart';
+import 'package:age_lingo/screens/onboarding_screen.dart';
 import 'package:age_lingo/utils/app_theme.dart';
 import 'package:age_lingo/utils/settings_provider.dart';
-import 'package:age_lingo/utils/term_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize term service
-  final termService = TermService();
-  await termService.loadTerms();
-  
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => SettingsProvider(),
-      child: const MyApp(),
-    ),
-  );
+  // Check if onboarding is complete
+  final prefs = await SharedPreferences.getInstance();
+  final bool showOnboarding = !(prefs.getBool('onboarding_complete') ?? false);
+
+  runApp(MyApp(showOnboarding: showOnboarding));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  final bool showOnboarding;
+  
+  const MyApp({Key? key, required this.showOnboarding}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  late final SettingsProvider _settingsProvider;
+  late final AnimationController _animationController;
+  late bool _showOnboarding;
+  
+  @override
+  void initState() {
+    super.initState();
+    _settingsProvider = SettingsProvider();
+    _showOnboarding = widget.showOnboarding;
+    
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+  }
+  
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+  
+  void _onOnboardingComplete() {
+    setState(() {
+      _showOnboarding = false;
+    });
+    _animationController.forward(from: 0.0);
+    _settingsProvider.refreshSettings();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SettingsProvider>(
-      builder: (context, settings, child) {
-        return MaterialApp(
-          title: 'AgeLingo',
-          debugShowCheckedModeBanner: false,
-          theme: settings.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-          home: const MainApp(),
-        );
-      },
+    return ChangeNotifierProvider.value(
+      value: _settingsProvider,
+      child: Consumer<SettingsProvider>(
+        builder: (context, settings, _) {
+          return MaterialApp(
+            title: 'AgeLingo',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            home: _showOnboarding 
+                ? OnboardingScreen(onComplete: _onOnboardingComplete)
+                : AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) {
+                      return FadeTransition(
+                        opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                            parent: _animationController,
+                            curve: Curves.easeIn,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    child: const HomeScreen(),
+                  ),
+          );
+        },
+      ),
     );
   }
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
 
   @override
-  _MainAppState createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
-  int _currentIndex = 0;
-  final PageController _pageController = PageController();
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-      _pageController.jumpToPage(index);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          HomeScreen(),
-          SettingsScreen(),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        selectedItemColor: AppTheme.primaryColor,
-      ),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }

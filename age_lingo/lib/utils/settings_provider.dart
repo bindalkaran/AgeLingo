@@ -39,6 +39,12 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Trigger a refresh to update the UI
+  void refreshSettings() {
+    _loadSettings();
+    notifyListeners();
+  }
+
   // Save settings to SharedPreferences
   Future<void> _saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
