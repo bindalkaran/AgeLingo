@@ -29,17 +29,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
+      - name: Debug Info
+        run: |
+          echo "GitHub workspace: $GITHUB_WORKSPACE"
+          echo "Current directory: $(pwd)"
+          echo "Directory listing:"
+          ls -la
+      
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
       
+      - name: Verify Flutter
+        run: |
+          flutter --version
+          flutter doctor -v
+      
       - name: Install dependencies
         run: cd age_lingo && flutter pub get
       
       - name: Build web app
         run: cd age_lingo && flutter build web --release
+      
+      - name: Debug Web Build
+        run: |
+          echo "Web build directory content:"
+          ls -la age_lingo/build/web/
       
       - name: Fix for GitHub Pages
         run: |
@@ -52,11 +69,22 @@ jobs:
           if [ -f "flutter_service_worker.js" ]; then
             sed -i 's/"\/":/"":/' flutter_service_worker.js
           fi
+          
+          # Verify fixed files
+          echo "Content of index.html with fixed base href:"
+          grep "<base" index.html
+          echo "Files after fixing:"
+          ls -la
       
-      # Direct deployment without using GitHub Pages artifacts
-      - name: Deploy directly to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./age_lingo/build/web
-          branch: gh-pages
-          clean: true
+      # Direct deployment using simpler approach
+      - name: Deploy to GitHub Pages
+        run: |
+          cd age_lingo/build/web
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git branch -M gh-pages
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push -f origin gh-pages
