@@ -1374,7 +1374,7 @@
       "definition": "Something that was once trendy but is now outdated or trying too hard",
       "translations": {
         "Boomers": "passé",
-        "Gen X": "outdated",
+        "Gen X": "unhip",
         "Millennials": "basic",
         "Gen Alpha": "cringe"
       },
@@ -1751,6 +1751,1410 @@
         "Gen Alpha": "elite"
       },
       "example": "That new skateboard trick was sick!"
+    },
+    {
+      "word": "jinx",
+      "generation": "Millennials",
+      "definition": "When two people say the same thing at the same time",
+      "translations": {
+        "Boomers": "snap",
+        "Gen X": "jinx",
+        "Gen Z": "same brain",
+        "Gen Alpha": "twinning"
+      },
+      "example": "We both said 'pizza' at the same time. Jinx!"
+    },
+    {
+      "word": "gnarly",
+      "generation": "Gen X",
+      "definition": "Something extreme, challenging, or impressive",
+      "translations": {
+        "Boomers": "wild",
+        "Millennials": "intense",
+        "Gen Z": "insane",
+        "Gen Alpha": "crazy"
+      },
+      "example": "That was a gnarly wipeout on his skateboard."
+    },
+    {
+      "word": "rap sheet",
+      "generation": "Boomers",
+      "definition": "A list of someone's offenses or wrongdoings",
+      "translations": {
+        "Gen X": "track record",
+        "Millennials": "history",
+        "Gen Z": "receipts",
+        "Gen Alpha": "list of crimes"
+      },
+      "example": "He's got quite a rap sheet of workplace violations."
+    },
+    {
+      "word": "crash pad",
+      "generation": "Boomers",
+      "definition": "A place to sleep temporarily",
+      "translations": {
+        "Gen X": "flop house",
+        "Millennials": "couch to crash on",
+        "Gen Z": "place to stay",
+        "Gen Alpha": "sleepover spot"
+      },
+      "example": "Can I use your place as a crash pad this weekend?"
+    },
+    {
+      "word": "take a powder",
+      "generation": "Boomers",
+      "definition": "To leave or depart quickly",
+      "translations": {
+        "Gen X": "bail",
+        "Millennials": "dip out",
+        "Gen Z": "ghost",
+        "Gen Alpha": "head out"
+      },
+      "example": "When things got awkward at the party, I decided to take a powder."
+    },
+    {
+      "word": "spiffy",
+      "generation": "Boomers",
+      "definition": "Well-dressed or stylish",
+      "translations": {
+        "Gen X": "sharp",
+        "Millennials": "put together",
+        "Gen Z": "fresh",
+        "Gen Alpha": "drippy"
+      },
+      "example": "You look spiffy in that new suit!"
+    },
+    {
+      "word": "bummed out",
+      "generation": "Gen X",
+      "definition": "Disappointed or sad",
+      "translations": {
+        "Boomers": "down in the dumps",
+        "Millennials": "depressed",
+        "Gen Z": "feeling down",
+        "Gen Alpha": "sad"
+      },
+      "example": "I'm really bummed out that the concert was canceled."
+    },
+    {
+      "word": "peeps",
+      "generation": "Millennials",
+      "definition": "Friends or people in general",
+      "translations": {
+        "Boomers": "folks",
+        "Gen X": "crew",
+        "Gen Z": "squad",
+        "Gen Alpha": "homies"
+      },
+      "example": "I'm going to the movies with my peeps tonight."
+    },
+    {
+      "word": "whack",
+      "generation": "Gen X",
+      "definition": "Strange, weird, or not good",
+      "translations": {
+        "Boomers": "off-kilter",
+        "Millennials": "weird",
+        "Gen Z": "sus",
+        "Gen Alpha": "weird"
+      },
+      "example": "That movie's plot was totally whack, made no sense at all."
+    },
+    {
+      "word": "outtasight",
+      "generation": "Boomers",
+      "definition": "Extraordinary or excellent",
+      "translations": {
+        "Gen X": "radical",
+        "Millennials": "amazing",
+        "Gen Z": "fire",
+        "Gen Alpha": "insane"
+      },
+      "example": "That guitar solo was outtasight!"
+    },
+    {
+      "word": "sketchy",
+      "generation": "Millennials",
+      "definition": "Questionable, suspicious, or potentially dangerous",
+      "translations": {
+        "Boomers": "fishy",
+        "Gen X": "shady",
+        "Gen Z": "sus",
+        "Gen Alpha": "scary"
+      },
+      "example": "That alley looks pretty sketchy, let's go another way."
+    },
+    {
+      "word": "rad to the max",
+      "generation": "Gen X",
+      "definition": "Extremely cool or impressive",
+      "translations": {
+        "Boomers": "out of this world",
+        "Millennials": "totally awesome",
+        "Gen Z": "straight fire",
+        "Gen Alpha": "the best ever"
+      },
+      "example": "That new video game is rad to the max!"
+    },
+    {
+      "word": "cheddar",
+      "generation": "Millennials",
+      "definition": "Money",
+      "translations": {
+        "Boomers": "bread",
+        "Gen X": "cash",
+        "Gen Z": "bag",
+        "Gen Alpha": "money"
+      },
+      "example": "I need to make some cheddar before the rent is due."
+    },
+    {
+      "word": "hepcat",
+      "generation": "Boomers",
+      "definition": "A stylish, fashionable person up on the latest trends",
+      "translations": {
+        "Gen X": "trendsetter",
+        "Millennials": "influencer",
+        "Gen Z": "it girl/guy",
+        "Gen Alpha": "trendy person"
+      },
+      "example": "He's a real hepcat with those sunglasses and that jacket."
+    },
+    {
+      "word": "thirsty",
+      "generation": "Millennials",
+      "definition": "Desperately wanting attention or approval",
+      "translations": {
+        "Boomers": "attention-seeking",
+        "Gen X": "needy",
+        "Gen Z": "clout chaser",
+        "Gen Alpha": "desperate"
+      },
+      "example": "Posting selfies every hour is pretty thirsty behavior."
+    },
+    {
+      "word": "Wiggin' out",
+      "generation": "Gen X",
+      "definition": "Becoming anxious, upset, or agitated",
+      "translations": {
+        "Boomers": "having a conniption",
+        "Millennials": "losing it",
+        "Gen Z": "stressing",
+        "Gen Alpha": "panicking"
+      },
+      "example": "She's wiggin' out about her exam tomorrow."
+    },
+    {
+      "word": "solid",
+      "generation": "Gen X",
+      "definition": "Reliable, good, or substantial",
+      "translations": {
+        "Boomers": "dependable",
+        "Millennials": "legit",
+        "Gen Z": "valid",
+        "Gen Alpha": "reliable"
+      },
+      "example": "Thanks for helping me move, you're solid."
+    },
+    {
+      "word": "righteous",
+      "generation": "Boomers",
+      "definition": "Excellent or wonderful",
+      "translations": {
+        "Gen X": "awesome",
+        "Millennials": "amazing",
+        "Gen Z": "fire",
+        "Gen Alpha": "sick"
+      },
+      "example": "That was a righteous performance, man."
+    },
+    {
+      "word": "throwing shade",
+      "generation": "Millennials",
+      "definition": "Subtly insulting or criticizing someone",
+      "translations": {
+        "Boomers": "giving the cold shoulder",
+        "Gen X": "dissing",
+        "Gen Z": "coming for someone",
+        "Gen Alpha": "roasting"
+      },
+      "example": "She wasn't being direct, but she was definitely throwing shade at your outfit."
+    },
+    {
+      "word": "grody",
+      "generation": "Gen X",
+      "definition": "Disgusting or revolting",
+      "translations": {
+        "Boomers": "gross",
+        "Millennials": "nasty",
+        "Gen Z": "disgusting",
+        "Gen Alpha": "yucky"
+      },
+      "example": "That moldy sandwich in the fridge is totally grody."
+    },
+    {
+      "word": "the bee's knees",
+      "generation": "Boomers",
+      "definition": "Something excellent or outstanding",
+      "translations": {
+        "Gen X": "the bomb",
+        "Millennials": "awesome",
+        "Gen Z": "fire",
+        "Gen Alpha": "elite"
+      },
+      "example": "This new restaurant is the bee's knees, you have to try it!"
+    },
+    {
+      "word": "lowkey",
+      "generation": "Millennials",
+      "definition": "Quietly, subtly, or secretly",
+      "translations": {
+        "Boomers": "on the down low",
+        "Gen X": "under the radar",
+        "Gen Z": "subtle",
+        "Gen Alpha": "secretly"
+      },
+      "example": "I'm lowkey obsessed with that new TV show."
+    },
+    {
+      "word": "hang tight",
+      "generation": "Gen X",
+      "definition": "Wait patiently",
+      "translations": {
+        "Boomers": "hold your horses",
+        "Millennials": "hang on",
+        "Gen Z": "wait a sec",
+        "Gen Alpha": "wait"
+      },
+      "example": "Hang tight, I'll be there in five minutes."
+    },
+    {
+      "word": "boss",
+      "generation": "Boomers",
+      "definition": "Excellent or impressive",
+      "translations": {
+        "Gen X": "sweet",
+        "Millennials": "epic",
+        "Gen Z": "dope",
+        "Gen Alpha": "goated"
+      },
+      "example": "That guitar solo was really boss!"
+    },
+    {
+      "word": "it's giving",
+      "generation": "Gen Alpha",
+      "definition": "Exuding or resembling a particular vibe or quality",
+      "translations": {
+        "Boomers": "it reminds me of",
+        "Gen X": "it looks like",
+        "Millennials": "it's resembling",
+        "Gen Z": "it's serving"
+      },
+      "example": "That outfit is giving vintage 80s fashion."
+    },
+    {
+      "word": "cowabunga",
+      "generation": "Gen X",
+      "definition": "Expression of excitement or enthusiasm",
+      "translations": {
+        "Boomers": "hot dog!",
+        "Millennials": "awesome!",
+        "Gen Z": "let's go!",
+        "Gen Alpha": "yay!"
+      },
+      "example": "Cowabunga! We're going to the beach today!"
+    },
+    {
+      "word": "catch you on the flip side",
+      "generation": "Boomers",
+      "definition": "See you later or goodbye",
+      "translations": {
+        "Gen X": "later",
+        "Millennials": "see ya",
+        "Gen Z": "ttyl",
+        "Gen Alpha": "bye"
+      },
+      "example": "I've got to head out now, catch you on the flip side!"
+    },
+    {
+      "word": "zilch",
+      "generation": "Boomers",
+      "definition": "Nothing at all",
+      "translations": {
+        "Gen X": "nada",
+        "Millennials": "nothing",
+        "Gen Z": "zero",
+        "Gen Alpha": "none"
+      },
+      "example": "How much money do I have left? Zilch."
+    },
+    {
+      "word": "fierce",
+      "generation": "Millennials",
+      "definition": "Extremely impressive or of high quality",
+      "translations": {
+        "Boomers": "dynamite",
+        "Gen X": "killer",
+        "Gen Z": "fire",
+        "Gen Alpha": "amazing"
+      },
+      "example": "Her fashion sense is absolutely fierce."
+    },
+    {
+      "word": "gag",
+      "generation": "Gen Alpha",
+      "definition": "Something shocking or surprising",
+      "translations": {
+        "Boomers": "I'm floored",
+        "Gen X": "no way",
+        "Millennials": "I'm shook",
+        "Gen Z": "I'm dead"
+      },
+      "example": "The plot twist in that movie was a total gag!"
+    },
+    {
+      "word": "pookie",
+      "generation": "Gen Alpha",
+      "definition": "A term of endearment for a close friend",
+      "translations": {
+        "Boomers": "pal",
+        "Gen X": "buddy",
+        "Millennials": "bestie",
+        "Gen Z": "bff"
+      },
+      "example": "Pookie, can you help me with my homework?"
+    },
+    {
+      "word": "slay",
+      "generation": "Gen Z",
+      "definition": "To do something exceptionally well",
+      "translations": {
+        "Boomers": "knock it out of the park",
+        "Gen X": "crush it",
+        "Millennials": "kill it",
+        "Gen Alpha": "ate that"
+      },
+      "example": "You really slayed that presentation!"
+    },
+    {
+      "word": "nepo baby",
+      "generation": "Gen Z",
+      "definition": "Someone who has achieved success due to having famous or well-connected parents",
+      "translations": {
+        "Boomers": "silver spoon kid",
+        "Gen X": "privileged kid",
+        "Millennials": "born with connections",
+        "Gen Alpha": "rich kid"
+      },
+      "example": "That actor is just a nepo baby who got the role because of his father."
+    },
+    {
+      "word": "ate",
+      "generation": "Gen Alpha",
+      "definition": "Did something extremely well",
+      "translations": {
+        "Boomers": "knocked it out of the park",
+        "Gen X": "nailed it",
+        "Millennials": "killed it",
+        "Gen Z": "slayed"
+      },
+      "example": "She really ate with that performance!"
+    },
+    {
+      "word": "rizz",
+      "generation": "Gen Alpha",
+      "definition": "Charm or the ability to attract someone romantically",
+      "translations": {
+        "Boomers": "charm",
+        "Gen X": "charisma",
+        "Millennials": "game",
+        "Gen Z": "pull"
+      },
+      "example": "He's got no rizz, that's why he's still single."
+    },
+    {
+      "word": "bet",
+      "generation": "Gen Z",
+      "definition": "Agreement or confirmation",
+      "translations": {
+        "Boomers": "you bet",
+        "Gen X": "for sure",
+        "Millennials": "definitely",
+        "Gen Alpha": "okay"
+      },
+      "example": "Want to meet at six? Bet!"
+    },
+    {
+      "word": "dank",
+      "generation": "Millennials",
+      "definition": "Really good or high quality",
+      "translations": {
+        "Boomers": "top-notch",
+        "Gen X": "choice",
+        "Gen Z": "fire",
+        "Gen Alpha": "bussin"
+      },
+      "example": "That was a dank meal we just had."
+    },
+    {
+      "word": "far out",
+      "generation": "Boomers",
+      "definition": "Excellent or mind-blowing",
+      "translations": {
+        "Gen X": "awesome",
+        "Millennials": "amazing",
+        "Gen Z": "mind-blowing",
+        "Gen Alpha": "crazy cool"
+      },
+      "example": "That concert was far out, man!"
+    },
+    {
+      "word": "cheugy",
+      "generation": "Gen Z",
+      "definition": "Something that was once trendy but is now outdated or trying too hard",
+      "translations": {
+        "Boomers": "passé",
+        "Gen X": "unhip",
+        "Millennials": "basic",
+        "Gen Alpha": "cringe"
+      },
+      "example": "Wearing Uggs with a mini skirt is so cheugy now."
+    },
+    {
+      "word": "tubular",
+      "generation": "Gen X",
+      "definition": "Excellent or awesome",
+      "translations": {
+        "Boomers": "groovy",
+        "Millennials": "awesome",
+        "Gen Z": "fire",
+        "Gen Alpha": "sick"
+      },
+      "example": "That new roller coaster was totally tubular!"
+    },
+    {
+      "word": "no cap",
+      "generation": "Gen Z",
+      "definition": "No lie or telling the truth",
+      "translations": {
+        "Boomers": "honest truth",
+        "Gen X": "for real",
+        "Millennials": "seriously",
+        "Gen Alpha": "fr"
+      },
+      "example": "This is the best pizza I've ever had, no cap."
+    },
+    {
+      "word": "flamed",
+      "generation": "Gen Alpha",
+      "definition": "Harshly criticized or insulted",
+      "translations": {
+        "Boomers": "dressed down",
+        "Gen X": "ripped apart",
+        "Millennials": "roasted",
+        "Gen Z": "dragged"
+      },
+      "example": "He got flamed in the comments section for that post."
+    },
+    {
+      "word": "groovy",
+      "generation": "Boomers",
+      "definition": "Excellent, cool, or trendy",
+      "translations": {
+        "Gen X": "cool",
+        "Millennials": "awesome",
+        "Gen Z": "vibe",
+        "Gen Alpha": "cool"
+      },
+      "example": "That's a groovy new hairstyle you've got."
+    },
+    {
+      "word": "jelly",
+      "generation": "Millennials",
+      "definition": "Jealous",
+      "translations": {
+        "Boomers": "green with envy",
+        "Gen X": "jealous",
+        "Gen Z": "salty",
+        "Gen Alpha": "mad"
+      },
+      "example": "I'm so jelly of your new car!"
+    },
+    {
+      "word": "psych",
+      "generation": "Gen X",
+      "definition": "To reveal that you were just joking or to trick someone",
+      "translations": {
+        "Boomers": "just kidding",
+        "Millennials": "just kidding",
+        "Gen Z": "sike",
+        "Gen Alpha": "joking"
+      },
+      "example": "I'll give you my dessert... psych!"
+    },
+    {
+      "word": "fetch",
+      "generation": "Millennials",
+      "definition": "Cool or trendy",
+      "translations": {
+        "Boomers": "hip",
+        "Gen X": "rad",
+        "Gen Z": "cool",
+        "Gen Alpha": "fire"
+      },
+      "example": "That jacket is so fetch!"
+    },
+    {
+      "word": "fax",
+      "generation": "Gen Z",
+      "definition": "Facts or truth",
+      "translations": {
+        "Boomers": "the truth",
+        "Gen X": "for real",
+        "Millennials": "facts",
+        "Gen Alpha": "real"
+      },
+      "example": "Everything he said about the situation is fax, no printer."
+    },
+    {
+      "word": "sliving",
+      "generation": "Gen Z",
+      "definition": "Living your best life; slaying while living",
+      "translations": {
+        "Boomers": "living the good life",
+        "Gen X": "living it up",
+        "Millennials": "thriving",
+        "Gen Alpha": "winning"
+      },
+      "example": "She's vacationing in Bali right now, totally sliving."
+    },
+    {
+      "word": "baddie",
+      "generation": "Gen Z",
+      "definition": "An attractive, confident person with style",
+      "translations": {
+        "Boomers": "knockout",
+        "Gen X": "fox",
+        "Millennials": "hot stuff",
+        "Gen Alpha": "pretty person"
+      },
+      "example": "She's such a baddie in that outfit."
+    },
+    {
+      "word": "the 411",
+      "generation": "Gen X",
+      "definition": "Information or the scoop on something",
+      "translations": {
+        "Boomers": "the scoop",
+        "Millennials": "the tea",
+        "Gen Z": "the tea",
+        "Gen Alpha": "info"
+      },
+      "example": "Give me the 411 on what happened at the party last night."
+    },
+    {
+      "word": "snatched",
+      "generation": "Gen Z",
+      "definition": "Looking extremely good, particularly regarding fashion or physical appearance",
+      "translations": {
+        "Boomers": "stunning",
+        "Gen X": "looking sharp",
+        "Millennials": "on point",
+        "Gen Alpha": "perfect"
+      },
+      "example": "Your eyebrows are snatched today!"
+    },
+    {
+      "word": "buggin'",
+      "generation": "Millennials",
+      "definition": "Acting crazy or being paranoid",
+      "translations": {
+        "Boomers": "flipping out",
+        "Gen X": "tripping",
+        "Gen Z": "tweaking",
+        "Gen Alpha": "crazy"
+      },
+      "example": "You're buggin' if you think I'm going to let you borrow my car again."
+    },
+    {
+      "word": "plonker",
+      "generation": "Boomers",
+      "definition": "A foolish or silly person",
+      "translations": {
+        "Gen X": "doofus",
+        "Millennials": "idiot",
+        "Gen Z": "clown",
+        "Gen Alpha": "dummy"
+      },
+      "example": "Don't be such a plonker, that's obviously not how it works."
+    },
+    {
+      "word": "finna",
+      "generation": "Gen Z",
+      "definition": "Going to or about to do something",
+      "translations": {
+        "Boomers": "about to",
+        "Gen X": "going to",
+        "Millennials": "about to",
+        "Gen Alpha": "gonna"
+      },
+      "example": "I'm finna head to the store, need anything?"
+    },
+    {
+      "word": "skrrt",
+      "generation": "Gen Z",
+      "definition": "The sound of tires screeching; used to indicate leaving quickly",
+      "translations": {
+        "Boomers": "I'm out of here",
+        "Gen X": "gotta run",
+        "Millennials": "gotta go",
+        "Gen Alpha": "bye"
+      },
+      "example": "This party is boring, skrrt!"
+    },
+    {
+      "word": "boujee",
+      "generation": "Millennials",
+      "definition": "High-class, fancy, or showing wealth",
+      "translations": {
+        "Boomers": "highfalutin",
+        "Gen X": "fancy",
+        "Gen Z": "expensive taste",
+        "Gen Alpha": "fancy"
+      },
+      "example": "That restaurant is too boujee for my budget."
+    },
+    {
+      "word": "sus",
+      "generation": "Gen Z",
+      "definition": "Suspicious or questionable",
+      "translations": {
+        "Boomers": "fishy",
+        "Gen X": "sketchy",
+        "Millennials": "sketchy",
+        "Gen Alpha": "weird"
+      },
+      "example": "The way he suddenly changed his story is kinda sus."
+    },
+    {
+      "word": "poggers",
+      "generation": "Gen Z",
+      "definition": "Expression of excitement or approval, especially in gaming",
+      "translations": {
+        "Boomers": "fantastic",
+        "Gen X": "awesome",
+        "Millennials": "amazing",
+        "Gen Alpha": "awesome"
+      },
+      "example": "You won the tournament? That's poggers!"
+    },
+    {
+      "word": "L + ratio",
+      "generation": "Gen Alpha",
+      "definition": "A way to indicate someone has lost an argument, especially online",
+      "translations": {
+        "Boomers": "you've been outdone",
+        "Gen X": "you lost",
+        "Millennials": "you got owned",
+        "Gen Z": "you lost this one"
+      },
+      "example": "Your take on the movie was terrible, L + ratio."
+    },
+    {
+      "word": "square",
+      "generation": "Boomers",
+      "definition": "Someone who is conventional, old-fashioned, or not cool",
+      "translations": {
+        "Gen X": "stick in the mud",
+        "Millennials": "basic",
+        "Gen Z": "lame",
+        "Gen Alpha": "boring"
+      },
+      "example": "Don't be such a square, live a little!"
+    },
+    {
+      "word": "yeet",
+      "generation": "Gen Z",
+      "definition": "To throw something forcefully; also an exclamation of excitement",
+      "translations": {
+        "Boomers": "toss",
+        "Gen X": "chuck",
+        "Millennials": "throw",
+        "Gen Alpha": "throw"
+      },
+      "example": "I'm going to yeet this empty can into the trash."
+    },
+    {
+      "word": "grindset",
+      "generation": "Gen Z",
+      "definition": "A mindset focused on working hard and achieving goals",
+      "translations": {
+        "Boomers": "work ethic",
+        "Gen X": "hustle",
+        "Millennials": "hustle culture",
+        "Gen Alpha": "hard work"
+      },
+      "example": "He's always up at 5 AM working on his business, true grindset mentality."
+    },
+    {
+      "word": "zaddy",
+      "generation": "Gen Z",
+      "definition": "An attractive older man with style and charm",
+      "translations": {
+        "Boomers": "gentleman",
+        "Gen X": "stud",
+        "Millennials": "silver fox",
+        "Gen Alpha": "hot guy"
+      },
+      "example": "That professor is such a zaddy with his sweater vests and glasses."
+    },
+    {
+      "word": "dinky",
+      "generation": "Boomers",
+      "definition": "Small, insignificant, or of poor quality",
+      "translations": {
+        "Gen X": "cheapo",
+        "Millennials": "rinky-dink",
+        "Gen Z": "basic",
+        "Gen Alpha": "tiny"
+      },
+      "example": "We stayed in a dinky little motel off the highway."
+    },
+    {
+      "word": "on fleek",
+      "generation": "Millennials",
+      "definition": "Perfect or flawlessly styled",
+      "translations": {
+        "Boomers": "perfect",
+        "Gen X": "on point",
+        "Gen Z": "fire",
+        "Gen Alpha": "perfect"
+      },
+      "example": "Your eyebrows are on fleek today!"
+    },
+    {
+      "word": "based",
+      "generation": "Gen Z",
+      "definition": "Being true to yourself regardless of others' opinions; often used to express agreement",
+      "translations": {
+        "Boomers": "telling it like it is",
+        "Gen X": "keeping it real",
+        "Millennials": "authentic",
+        "Gen Alpha": "true"
+      },
+      "example": "He gave his honest opinion despite the backlash. That's so based."
+    },
+    {
+      "word": "straight from the horse's mouth",
+      "generation": "Boomers",
+      "definition": "Information directly from the source",
+      "translations": {
+        "Gen X": "from the source",
+        "Millennials": "firsthand",
+        "Gen Z": "direct info",
+        "Gen Alpha": "directly"
+      },
+      "example": "I heard it straight from the horse's mouth – they're closing the store next month."
+    },
+    {
+      "word": "gag me with a spoon",
+      "generation": "Gen X",
+      "definition": "An expression of disgust or dislike",
+      "translations": {
+        "Boomers": "that's revolting",
+        "Millennials": "gross",
+        "Gen Z": "I'm gonna throw up",
+        "Gen Alpha": "ew"
+      },
+      "example": "Gag me with a spoon! I can't believe you're wearing those pants with that shirt."
+    },
+    {
+      "word": "icks",
+      "generation": "Gen Alpha",
+      "definition": "Things that instantly turn you off about someone",
+      "translations": {
+        "Boomers": "dealbreakers",
+        "Gen X": "turnoffs",
+        "Millennials": "red flags",
+        "Gen Z": "the ick"
+      },
+      "example": "When he chews with his mouth open, it gives me the icks."
+    },
+    {
+      "word": "stan",
+      "generation": "Millennials",
+      "definition": "To be an extremely devoted fan of someone",
+      "translations": {
+        "Boomers": "be a devoted fan",
+        "Gen X": "be a groupie",
+        "Gen Z": "simp for",
+        "Gen Alpha": "fan over"
+      },
+      "example": "I stan that band so hard, I've been to all their concerts."
+    },
+    {
+      "word": "spill the tea",
+      "generation": "Gen Z",
+      "definition": "To share gossip or news",
+      "translations": {
+        "Boomers": "dish the dirt",
+        "Gen X": "give me the scoop",
+        "Millennials": "share the gossip",
+        "Gen Alpha": "tell me"
+      },
+      "example": "Come on, spill the tea about what happened at the party!"
+    },
+    {
+      "word": "copium",
+      "generation": "Gen Alpha",
+      "definition": "A made-up substance people take when they can't cope with reality",
+      "translations": {
+        "Boomers": "delusion",
+        "Gen X": "false hope",
+        "Millennials": "self-deception",
+        "Gen Z": "denial"
+      },
+      "example": "He's inhaling copium thinking he still has a chance after getting rejected three times."
+    },
+    {
+      "word": "radical",
+      "generation": "Gen X",
+      "definition": "Excellent or impressive",
+      "translations": {
+        "Boomers": "far out",
+        "Millennials": "awesome",
+        "Gen Z": "sick",
+        "Gen Alpha": "cool"
+      },
+      "example": "That skateboard trick was totally radical!"
+    },
+    {
+      "word": "crib",
+      "generation": "Millennials",
+      "definition": "One's home or living space",
+      "translations": {
+        "Boomers": "pad",
+        "Gen X": "digs",
+        "Gen Z": "spot",
+        "Gen Alpha": "house"
+      },
+      "example": "Let's hang out at my crib tonight."
+    },
+    {
+      "word": "lit",
+      "generation": "Gen Z",
+      "definition": "Amazing, exciting, or high energy",
+      "translations": {
+        "Boomers": "wild",
+        "Gen X": "off the hook",
+        "Millennials": "awesome",
+        "Gen Alpha": "fire"
+      },
+      "example": "That party last night was lit!"
+    },
+    {
+      "word": "take a chill pill",
+      "generation": "Gen X",
+      "definition": "Calm down or relax",
+      "translations": {
+        "Boomers": "cool your jets",
+        "Millennials": "relax",
+        "Gen Z": "chill out",
+        "Gen Alpha": "calm down"
+      },
+      "example": "Take a chill pill, it's not that serious."
+    },
+    {
+      "word": "bussin",
+      "generation": "Gen Alpha",
+      "definition": "Extremely good, especially regarding food",
+      "translations": {
+        "Boomers": "delicious",
+        "Gen X": "tasty",
+        "Millennials": "amazing",
+        "Gen Z": "fire"
+      },
+      "example": "This pasta is bussin no cap!"
+    },
+    {
+      "word": "hip",
+      "generation": "Boomers",
+      "definition": "Fashionable or trendy",
+      "translations": {
+        "Gen X": "cool",
+        "Millennials": "trendy",
+        "Gen Z": "vibe",
+        "Gen Alpha": "cool"
+      },
+      "example": "That's a very hip outfit you're wearing today."
+    },
+    {
+      "word": "simp",
+      "generation": "Gen Z",
+      "definition": "Someone who is excessively attentive or submissive to someone they're attracted to",
+      "translations": {
+        "Boomers": "pushover",
+        "Gen X": "doormat",
+        "Millennials": "try-hard",
+        "Gen Alpha": "too nice"
+      },
+      "example": "He bought her expensive gifts after just one date, total simp behavior."
+    },
+    {
+      "word": "drip",
+      "generation": "Gen Z",
+      "definition": "Fashionable or stylish clothing or appearance",
+      "translations": {
+        "Boomers": "threads",
+        "Gen X": "style",
+        "Millennials": "swag",
+        "Gen Alpha": "style"
+      },
+      "example": "Your drip is unmatched, where did you get those shoes?"
+    },
+    {
+      "word": "pop off",
+      "generation": "Gen Z",
+      "definition": "To suddenly perform exceptionally well or become excited",
+      "translations": {
+        "Boomers": "go off",
+        "Gen X": "show off",
+        "Millennials": "go off",
+        "Gen Alpha": "show out"
+      },
+      "example": "She really popped off in that debate competition!"
+    },
+    {
+      "word": "cattywampus",
+      "generation": "Boomers",
+      "definition": "Askew, awry, or in disarray",
+      "translations": {
+        "Gen X": "out of whack",
+        "Millennials": "messed up",
+        "Gen Z": "chaotic",
+        "Gen Alpha": "messy"
+      },
+      "example": "The whole schedule got thrown cattywampus by the delayed flight."
+    },
+    {
+      "word": "GOAT",
+      "generation": "Millennials",
+      "definition": "Greatest Of All Time",
+      "translations": {
+        "Boomers": "cream of the crop",
+        "Gen X": "best ever",
+        "Gen Z": "legend",
+        "Gen Alpha": "best ever"
+      },
+      "example": "Michael Jordan is the GOAT of basketball, no question."
+    },
+    {
+      "word": "grody to the max",
+      "generation": "Gen X",
+      "definition": "Extremely disgusting",
+      "translations": {
+        "Boomers": "revolting",
+        "Millennials": "disgusting",
+        "Gen Z": "nasty af",
+        "Gen Alpha": "super gross"
+      },
+      "example": "That moldy food in the fridge is grody to the max."
+    },
+    {
+      "word": "ngl",
+      "generation": "Gen Z",
+      "definition": "Not gonna lie; used to emphasize honesty",
+      "translations": {
+        "Boomers": "to be honest",
+        "Gen X": "frankly",
+        "Millennials": "honestly",
+        "Gen Alpha": "honestly"
+      },
+      "example": "Ngl, I didn't like that movie at all."
+    },
+    {
+      "word": "mid",
+      "generation": "Gen Alpha",
+      "definition": "Mediocre or of poor quality",
+      "translations": {
+        "Boomers": "so-so",
+        "Gen X": "nothing special",
+        "Millennials": "meh",
+        "Gen Z": "mid"
+      },
+      "example": "The new album was mid, I expected better."
+    },
+    {
+      "word": "wicked",
+      "generation": "Gen X",
+      "definition": "Very good or impressive",
+      "translations": {
+        "Boomers": "fantastic",
+        "Millennials": "awesome",
+        "Gen Z": "fire",
+        "Gen Alpha": "cool"
+      },
+      "example": "That was a wicked concert last night!"
+    },
+    {
+      "word": "fiddle-faddle",
+      "generation": "Boomers",
+      "definition": "Trivial matters or nonsense",
+      "translations": {
+        "Gen X": "hogwash",
+        "Millennials": "nonsense",
+        "Gen Z": "cap",
+        "Gen Alpha": "fake"
+      },
+      "example": "Don't waste my time with all this fiddle-faddle, just tell me what happened."
+    },
+    {
+      "word": "vibe check",
+      "generation": "Gen Z",
+      "definition": "Assessing the mood or atmosphere of a person or situation",
+      "translations": {
+        "Boomers": "read the room",
+        "Gen X": "gauge the mood",
+        "Millennials": "feel out",
+        "Gen Alpha": "check the energy"
+      },
+      "example": "Let me do a vibe check before I bring up that sensitive topic."
+    },
+    {
+      "word": "dipped",
+      "generation": "Millennials",
+      "definition": "Left suddenly or quickly",
+      "translations": {
+        "Boomers": "split",
+        "Gen X": "took off",
+        "Gen Z": "ghosted",
+        "Gen Alpha": "left"
+      },
+      "example": "The party got boring so I dipped."
+    },
+    {
+      "word": "cringe",
+      "generation": "Gen Z",
+      "definition": "Extremely embarrassing or awkward",
+      "translations": {
+        "Boomers": "embarrassing",
+        "Gen X": "painful to watch",
+        "Millennials": "awkward",
+        "Gen Alpha": "embarrassing"
+      },
+      "example": "That speech was so cringe I couldn't even watch it."
+    },
+    {
+      "word": "sipping tea",
+      "generation": "Gen Z",
+      "definition": "Observing drama or gossip without getting involved",
+      "translations": {
+        "Boomers": "staying out of it",
+        "Gen X": "watching from the sidelines",
+        "Millennials": "eating popcorn",
+        "Gen Alpha": "watching"
+      },
+      "example": "I'm just sipping tea while they argue in the group chat."
+    },
+    {
+      "word": "jazzed",
+      "generation": "Boomers",
+      "definition": "Excited or enthusiastic",
+      "translations": {
+        "Gen X": "pumped",
+        "Millennials": "hyped",
+        "Gen Z": "stoked",
+        "Gen Alpha": "excited"
+      },
+      "example": "I'm really jazzed about the concert tonight!"
+    },
+    {
+      "word": "slappers",
+      "generation": "Gen Alpha",
+      "definition": "Great songs or music",
+      "translations": {
+        "Boomers": "hits",
+        "Gen X": "bangers",
+        "Millennials": "jams",
+        "Gen Z": "bops"
+      },
+      "example": "This album is full of slappers!"
+    },
+    {
+      "word": "woke",
+      "generation": "Millennials",
+      "definition": "Alert to social injustices and issues",
+      "translations": {
+        "Boomers": "socially conscious",
+        "Gen X": "aware",
+        "Gen Z": "conscious",
+        "Gen Alpha": "aware"
+      },
+      "example": "She's very woke when it comes to environmental issues."
+    },
+    {
+      "word": "ratios",
+      "generation": "Gen Alpha",
+      "definition": "When a reply to a post gets more engagement than the original post",
+      "translations": {
+        "Boomers": "upstaged",
+        "Gen X": "outdone",
+        "Millennials": "owned",
+        "Gen Z": "ratioed"
+      },
+      "example": "He made a terrible take and got ratios so badly he deleted the post."
+    },
+    {
+      "word": "gas",
+      "generation": "Gen Z",
+      "definition": "Something excellent or impressive",
+      "translations": {
+        "Boomers": "terrific",
+        "Gen X": "awesome",
+        "Millennials": "dope",
+        "Gen Alpha": "fire"
+      },
+      "example": "That new song is straight gas!"
+    },
+    {
+      "word": "miffed",
+      "generation": "Boomers",
+      "definition": "Slightly annoyed or irritated",
+      "translations": {
+        "Gen X": "ticked off",
+        "Millennials": "annoyed",
+        "Gen Z": "pressed",
+        "Gen Alpha": "mad"
+      },
+      "example": "She was miffed that no one remembered her birthday."
+    },
+    {
+      "word": "iykyk",
+      "generation": "Gen Z",
+      "definition": "If you know, you know; referencing something only some people will understand",
+      "translations": {
+        "Boomers": "inside joke",
+        "Gen X": "only some will get it",
+        "Millennials": "KWIM (know what I mean)",
+        "Gen Alpha": "inside secret"
+      },
+      "example": "The way this teacher grades tests... iykyk."
+    },
+    {
+      "word": "dweeb",
+      "generation": "Gen X",
+      "definition": "A socially awkward or uncool person",
+      "translations": {
+        "Boomers": "nerd",
+        "Millennials": "geek",
+        "Gen Z": "loser",
+        "Gen Alpha": "nerd"
+      },
+      "example": "He's such a dweeb with those thick glasses and pocket protector."
+    },
+    {
+      "word": "pressed",
+      "generation": "Gen Z",
+      "definition": "Upset, bothered, or stressed about something",
+      "translations": {
+        "Boomers": "bothered",
+        "Gen X": "upset",
+        "Millennials": "triggered",
+        "Gen Alpha": "mad"
+      },
+      "example": "Why are you so pressed about what I posted? It's not that serious."
+    },
+    {
+      "word": "janky",
+      "generation": "Millennials",
+      "definition": "Poor quality, unreliable, or questionable",
+      "translations": {
+        "Boomers": "shoddy",
+        "Gen X": "sketchy",
+        "Gen Z": "sus",
+        "Gen Alpha": "broken"
+      },
+      "example": "This janky old laptop keeps crashing every five minutes."
+    },
+    {
+      "word": "skived off",
+      "generation": "Gen X",
+      "definition": "To avoid doing something, especially work or school",
+      "translations": {
+        "Boomers": "played hooky",
+        "Millennials": "ditched",
+        "Gen Z": "flaked",
+        "Gen Alpha": "skipped"
+      },
+      "example": "He skived off work again to go to the beach."
+    },
+    {
+      "word": "main character energy",
+      "generation": "Gen Z",
+      "definition": "Acting as if you're the central figure in a story or movie",
+      "translations": {
+        "Boomers": "center of attention",
+        "Gen X": "spotlight seeker",
+        "Millennials": "living your best life",
+        "Gen Alpha": "star vibes"
+      },
+      "example": "Walking down the street with headphones blasting music is total main character energy."
+    },
+    {
+      "word": "read",
+      "generation": "Millennials",
+      "definition": "To harshly criticize or call someone out",
+      "translations": {
+        "Boomers": "tell off",
+        "Gen X": "put in their place",
+        "Gen Z": "drag",
+        "Gen Alpha": "call out"
+      },
+      "example": "She really read him for showing up an hour late."
+    },
+    {
+      "word": "living rent free",
+      "generation": "Gen Z",
+      "definition": "When someone or something constantly occupies your thoughts",
+      "translations": {
+        "Boomers": "can't stop thinking about",
+        "Gen X": "obsessed with",
+        "Millennials": "can't get over",
+        "Gen Alpha": "stuck in your head"
+      },
+      "example": "That embarrassing moment is living rent free in my head."
+    },
+    {
+      "word": "keen",
+      "generation": "Boomers",
+      "definition": "Enthusiastic or eager",
+      "translations": {
+        "Gen X": "into it",
+        "Millennials": "down",
+        "Gen Z": "here for it",
+        "Gen Alpha": "excited"
+      },
+      "example": "I'm keen on going to the beach this weekend."
+    },
+    {
+      "word": "snack",
+      "generation": "Gen Z",
+      "definition": "Someone who looks good or is attractive",
+      "translations": {
+        "Boomers": "looker",
+        "Gen X": "hottie",
+        "Millennials": "eye candy",
+        "Gen Alpha": "cute"
+      },
+      "example": "The new teacher is a snack!"
+    },
+    {
+      "word": "mood",
+      "generation": "Gen Z",
+      "definition": "Something relatable or expressing agreement with a sentiment",
+      "translations": {
+        "Boomers": "I feel the same way",
+        "Gen X": "same here",
+        "Millennials": "same",
+        "Gen Alpha": "relatable"
+      },
+      "example": "Person 1: 'I just want to sleep all day.' Person 2: 'Mood.'"
+    },
+    {
+      "word": "himbo",
+      "generation": "Millennials",
+      "definition": "An attractive but unintelligent man",
+      "translations": {
+        "Boomers": "beefcake",
+        "Gen X": "hunk",
+        "Gen Z": "pretty boy",
+        "Gen Alpha": "cute dumb guy"
+      },
+      "example": "He's a classic himbo - gorgeous but can't hold a conversation."
+    },
+    {
+      "word": "aesthetic",
+      "generation": "Gen Z",
+      "definition": "A particular visual style or appearance",
+      "translations": {
+        "Boomers": "look",
+        "Gen X": "style",
+        "Millennials": "vibe",
+        "Gen Alpha": "theme"
+      },
+      "example": "Her room has a total cottagecore aesthetic."
+    },
+    {
+      "word": "full send",
+      "generation": "Gen Z",
+      "definition": "To commit fully to an action without hesitation",
+      "translations": {
+        "Boomers": "go all in",
+        "Gen X": "go for it",
+        "Millennials": "all out",
+        "Gen Alpha": "do it"
+      },
+      "example": "Should I ask her out? Full send, bro!"
+    },
+    {
+      "word": "chuffed",
+      "generation": "Boomers",
+      "definition": "Very pleased or delighted",
+      "translations": {
+        "Gen X": "stoked",
+        "Millennials": "thrilled",
+        "Gen Z": "hyped",
+        "Gen Alpha": "happy"
+      },
+      "example": "I'm absolutely chuffed with my exam results!"
+    },
+    {
+      "word": "highkey",
+      "generation": "Gen Z",
+      "definition": "Openly or obviously, not subtle",
+      "translations": {
+        "Boomers": "plainly",
+        "Gen X": "obviously",
+        "Millennials": "definitely",
+        "Gen Alpha": "seriously"
+      },
+      "example": "I'm highkey obsessed with this new show."
+    },
+    {
+      "word": "say less",
+      "generation": "Gen Z",
+      "definition": "I understand completely, no need to explain further",
+      "translations": {
+        "Boomers": "got it",
+        "Gen X": "enough said",
+        "Millennials": "say no more",
+        "Gen Alpha": "understood"
+      },
+      "example": "We're going to the concert tomorrow? Say less, I'm in!"
+    },
+    {
+      "word": "dead",
+      "generation": "Gen Z",
+      "definition": "Finding something extremely funny",
+      "translations": {
+        "Boomers": "in stitches",
+        "Gen X": "cracking up",
+        "Millennials": "dying",
+        "Gen Alpha": "crying"
+      },
+      "example": "That joke has me dead!"
+    },
+    {
+      "word": "dope",
+      "generation": "Gen X",
+      "definition": "Excellent or impressive",
+      "translations": {
+        "Boomers": "neat",
+        "Millennials": "cool",
+        "Gen Z": "fire",
+        "Gen Alpha": "sick"
+      },
+      "example": "That's a dope new car you got."
     }
   ]
 } 
