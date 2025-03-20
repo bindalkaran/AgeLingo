@@ -10,43 +10,13 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
-  // Function to open app store or play store
-  Future<void> _launchAppStore() async {
-    final Uri url = Uri.parse('https://agelingo.com');
+  // Function to launch LinkedIn profile
+  Future<void> _launchLinkedIn() async {
+    final Uri url = Uri.parse('https://www.linkedin.com/in/karanbindal/');
     
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
-  }
-  
-  // Function to share the app - modified to show dialog instead of using share_plus
-  void _shareApp(BuildContext context) {
-    const String shareText = 'Check out AgeLingo - an app that translates slang across generations (Baby Boomers, Gen X, Millennials, Gen Z, Gen Alpha)! https://agelingo.com';
-    
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Share AgeLingo'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Copy the text below to share:'),
-              const SizedBox(height: 12),
-              SelectableText(shareText),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -331,25 +301,14 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             const Text('Version 1.1.0'),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppButton(
-                  text: 'Rate App',
-                  icon: Icons.star,
-                  onPressed: _launchAppStore,
-                  width: 120,
-                  height: 40,
-                ),
-                const SizedBox(width: 16),
-                AppButton(
-                  text: 'Share App',
-                  icon: Icons.share,
-                  onPressed: () => _shareApp(context),
-                  width: 120,
-                  height: 40,
-                ),
-              ],
+            Center(
+              child: AppButton(
+                text: 'Connect on LinkedIn',
+                icon: Icons.link,
+                onPressed: _launchLinkedIn,
+                width: 200,
+                height: 40,
+              ),
             ),
           ],
         ),

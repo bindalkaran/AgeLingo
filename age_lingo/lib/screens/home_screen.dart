@@ -215,14 +215,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Developed by Karan Bindal',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontStyle: FontStyle.italic,
-                    color: AppTheme.textSecondaryColor,
-                  ),
-                ),
               ],
             ),
           ),
