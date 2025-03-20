@@ -46,13 +46,16 @@ jobs:
         run: cd age_lingo && flutter pub get
       
       - name: Build web app
-        run: cd age_lingo && flutter build web --release
+        run: cd age_lingo && flutter build web --release --base-href="/"
       
       - name: Fix for GitHub Pages
         run: |
           cd age_lingo/build/web
           touch .nojekyll
-          sed -i 's/<base href="$FLUTTER_BASE_HREF">/<base href="\/">/' index.html
+          
+          # Ensure there are no custom scripts that modify base href
+          sed -i '/window.flutterWebRenderer/,/}/d' index.html
+          
           echo "agelingo.com" > CNAME
           
           # Fix service worker paths if present
