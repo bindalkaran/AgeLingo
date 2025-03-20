@@ -5,9 +5,27 @@ import 'package:age_lingo/utils/settings_provider.dart';
 import 'package:age_lingo/widgets/generation_dropdown.dart';
 import 'package:age_lingo/utils/constants.dart';
 import 'package:age_lingo/widgets/app_button.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
+
+  // Function to open app store or play store
+  Future<void> _launchAppStore() async {
+    final Uri url = Uri.parse('https://agelingo.com');
+    
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+  
+  // Function to share the app
+  Future<void> _shareApp() async {
+    const String shareText = 'Check out AgeLingo - an app that translates slang across generations (Baby Boomers, Gen X, Millennials, Gen Z, Gen Alpha)! https://agelingo.com';
+    
+    await Share.share(shareText);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -283,6 +301,11 @@ class SettingsScreen extends StatelessWidget {
             const Text(
               'AgeLingo helps bridge the communication gap between generations by translating slang and generational language.',
             ),
+            const SizedBox(height: 12),
+            const Text(
+              'Developed by Karan Bindal',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
             const SizedBox(height: 16),
             const Text('Version 1.1.0'),
             const SizedBox(height: 16),
@@ -292,9 +315,7 @@ class SettingsScreen extends StatelessWidget {
                 AppButton(
                   text: 'Rate App',
                   icon: Icons.star,
-                  onPressed: () {
-                    // Open app store rating page
-                  },
+                  onPressed: _launchAppStore,
                   width: 120,
                   height: 40,
                 ),
@@ -302,9 +323,7 @@ class SettingsScreen extends StatelessWidget {
                 AppButton(
                   text: 'Share App',
                   icon: Icons.share,
-                  onPressed: () {
-                    // Share app link
-                  },
+                  onPressed: _shareApp,
                   width: 120,
                   height: 40,
                 ),

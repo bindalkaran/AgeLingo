@@ -1,96 +1,103 @@
 # AgeLingo
 
-AgeLingo is a mobile and web app designed to bridge the communication gap between generations by translating slang and generational language. It supports five generations: Baby Boomers, Gen X, Millennials, Gen Z, and Gen Alpha.
+A Flutter application that bridges the communication gap between generations by translating slang and generational language.
+
+![AgeLingo Logo](https://agelingo.com/favicon.png)
 
 ## Live Demo
 
-Visit the live web app: [AgeLingo Web App](https://agelingo.com)
+Visit the web app: [AgeLingo Web App](https://agelingo.com)
+
+## About
+
+AgeLingo is designed to facilitate better understanding across different generations. The app provides translation, dictionary lookup, and custom terminology features that help users understand and communicate across the Baby Boomer, Gen X, Millennial, Gen Z, and Gen Alpha generations.
 
 ## Features
 
-- **Real-time Translation**: Translate phrases between different generations
+- **Real-time Translation**: Translate phrases and slang between different generations
 - **Comprehensive Dictionary**: Browse a collection of generational terms and their meanings
 - **Speech-to-Text**: Speak your phrase for quick translation
-- **Dark Mode**: Toggle between light and dark themes
+- **Dark Mode**: Toggle between light and dark themes for comfortable viewing
 - **Search History**: Keep track of your recent translations
-- **Custom Terms**: Add your own generational terms
+- **Custom Terms**: Add your own generational terms to expand the database
+- **Haptic Feedback**: Enhanced user experience with subtle vibrations
+- **Animations**: Smooth, delightful interface transitions and interactions
 
-## GitHub Pages Deployment
+## Installation
 
-The app is deployed using GitHub Pages with a custom domain. Here's how it's set up:
+### Web (Recommended)
 
-1. The web build is automatically deployed via GitHub Actions workflow
-2. A custom domain (agelingo.com) is configured through GitHub Pages settings
-3. CNAME file is included in the web build directory
+The easiest way to use AgeLingo is through the web app at [agelingo.com](https://agelingo.com).
 
-To update the custom domain:
-1. Go to repository Settings > Pages
-2. Enter your custom domain in the "Custom domain" field
-3. Save the configuration
-4. The GitHub Actions workflow will maintain the CNAME file for you
+### Building from Source
 
-## Deployment Guide
+If you want to run the app locally:
 
-### Web Deployment
+1. Make sure you have Flutter installed ([Flutter Installation Guide](https://flutter.dev/docs/get-started/install))
+2. Clone this repository:
+   ```
+   git clone https://github.com/bindalkaran/AgeLingo.git
+   ```
+3. Navigate to the project directory:
+   ```
+   cd AgeLingo/age_lingo
+   ```
+4. Get dependencies:
+   ```
+   flutter pub get
+   ```
+5. Run the app:
+   ```
+   flutter run
+   ```
 
-The app is built and ready for web deployment. To deploy the web version:
+## Technology Stack
 
-1. Use the pre-built files in the `build/web` directory
-2. Upload the entire `build/web` directory to your web hosting service
-3. Configure your web server to serve the `index.html` file as the entry point
+- **Flutter**: Cross-platform UI toolkit
+- **Dart**: Programming language
+- **Provider**: State management
+- **Shared Preferences**: Local storage for user settings
+- **Speech-to-Text**: Voice input processing
+- **GitHub Pages**: Web hosting
+- **GitHub Actions**: CI/CD pipeline
 
-### Android Deployment
+## Project Structure
 
-To prepare the Android app for deployment:
+```
+lib/
+├── main.dart              # App entry point
+├── models/                # Data models
+├── screens/               # App screens
+├── utils/                 # Utilities and helpers
+└── widgets/               # Reusable UI components
+```
 
-1. Update the `applicationId` in `android/app/build.gradle.kts` to your unique ID
-2. Configure signing keys in the `android/app/build.gradle.kts` file
-3. Run `flutter build apk --release` to create a release APK
-4. The APK will be available at `build/app/outputs/flutter-apk/app-release.apk`
-
-### iOS Deployment
-
-To prepare the iOS app for deployment:
-
-1. Run `flutter create --platforms=ios .` to add iOS configuration
-2. Open the iOS project in Xcode: `open ios/Runner.xcworkspace`
-3. Configure app signing, bundle ID, and capabilities in Xcode
-4. Run `flutter build ios --release` to create a release build
-5. Archive and distribute through App Store Connect
-
-## Recent Changes (v1.1.0)
+## Recent Updates (v1.1.0)
 
 - Added support for Generation Alpha (born 2013-present)
 - Implemented search history feature
 - Added speech-to-text functionality with toggle in settings
-- Expanded vocabulary to 48 terms across all generations
-- Enhanced translation accuracy and visual feedback
-- Fixed issue with Generation Alpha years not appearing in dropdowns
-- Improved UI with better visual cues for translated terms
-- Added example phrases based on generation
-- Enabled dark mode support
+- Enhanced animations and transitions throughout the app
+- Improved loading performance and UI responsiveness
+- Added haptic feedback for better user experience
+- Updated UI with better visual cues for translated terms
+- Added developer information
 
-## Development
+## Contributing
 
-To set up the development environment:
+Contributions to improve AgeLingo are welcome! Feel free to:
 
-1. Clone the repository
-2. Run `flutter pub get` to install dependencies
-3. Run `flutter run` to launch the app in debug mode
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Make your changes
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin feature/your-feature`)
+6. Create a new Pull Request
 
-## Technologies Used
+## Developer
 
-- Flutter
-- Dart
-- Provider for state management
-- Shared Preferences for local storage
-- Speech-to-Text for voice input
-- GitHub Pages for web hosting
-
-## Credits
-
-Developed by Karan Bindal
+AgeLingo is developed by Karan Bindal, a passionate software engineer interested in human-computer interaction and cross-generational communication.
 
 ## License
 
-Copyright © 2025 AgeLingo 
+Copyright © 2025 Karan Bindal. All rights reserved. 
