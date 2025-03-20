@@ -52,16 +52,4 @@ jobs:
         with:
           folder: age_lingo/build/web
           branch: gh-pages
-          clean: true
-  
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build-and-deploy
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 
+          clean: true 
