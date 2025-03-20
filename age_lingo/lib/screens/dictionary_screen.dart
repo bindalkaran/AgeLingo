@@ -9,7 +9,12 @@ import 'package:age_lingo/widgets/animated_term_card.dart';
 import 'package:flutter/services.dart';
 
 class DictionaryScreen extends StatefulWidget {
-  const DictionaryScreen({Key? key}) : super(key: key);
+  final int initialTabIndex;
+
+  const DictionaryScreen({
+    Key? key,
+    this.initialTabIndex = 0,
+  }) : super(key: key);
 
   @override
   _DictionaryScreenState createState() => _DictionaryScreenState();
@@ -24,12 +29,21 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
   bool _isLoading = true;
   Term? _selectedTerm;
   bool _showDetailModal = false;
+  String _lastSearchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(
+      length: 6,
+      vsync: this,
+      initialIndex: widget.initialTabIndex,
+    );
     _tabController.addListener(_handleTabChange);
+    
+    // Update the selected generation based on initial tab index
+    _updateSelectedGenerationFromTabIndex(widget.initialTabIndex);
+    
     _loadTerms();
   }
 
@@ -47,12 +61,8 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
     });
   }
 
-  void _handleTabChange() {
-    if (_tabController.indexIsChanging) {
-      return;
-    }
-    
-    switch (_tabController.index) {
+  void _updateSelectedGenerationFromTabIndex(int index) {
+    switch (index) {
       case 0:
         _selectedGeneration = 'All';
         break;
@@ -72,7 +82,14 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
         _selectedGeneration = 'Gen Alpha';
         break;
     }
+  }
+
+  void _handleTabChange() {
+    if (_tabController.indexIsChanging) {
+      return;
+    }
     
+    _updateSelectedGenerationFromTabIndex(_tabController.index);
     _filterTerms();
   }
 
@@ -95,19 +112,26 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
               .toList();
         }
         
-        // Add search term to history if there are results
-        if (searchResults.isNotEmpty) {
-          Provider.of<SettingsProvider>(context, listen: false)
-              .addToSearchHistory(query);
-        }
-        
         _filteredTerms = searchResults;
       }
     });
   }
 
+  void _submitSearch(String query) {
+    // Only add to history if the query is different from the last one
+    // and if it's not empty and there are results
+    if (query.isNotEmpty && 
+        query != _lastSearchQuery && 
+        _filteredTerms.isNotEmpty) {
+      Provider.of<SettingsProvider>(context, listen: false)
+          .addToSearchHistory(query);
+      _lastSearchQuery = query;
+    }
+  }
+
   void _clearSearch() {
     _searchController.clear();
+    _lastSearchQuery = '';
     _filterTerms();
   }
   
@@ -407,6 +431,8 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
                 ),
               ),
               onChanged: (_) => _filterTerms(),
+              onSubmitted: _submitSearch,
+              textInputAction: TextInputAction.search,
             ),
           ),
           
@@ -468,7 +494,9 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
                               label: Text(query),
                               onPressed: () {
                                 _searchController.text = query;
+                                _lastSearchQuery = query;
                                 _filterTerms();
+                                _submitSearch(query);
                               },
                               backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
                               shape: StadiumBorder(
