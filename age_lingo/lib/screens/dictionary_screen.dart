@@ -24,7 +24,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
     _tabController.addListener(_handleTabChange);
     _loadTerms();
   }
@@ -63,6 +63,9 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
         break;
       case 4:
         _selectedGeneration = 'Gen Z';
+        break;
+      case 5:
+        _selectedGeneration = 'Gen Alpha';
         break;
     }
     
@@ -124,6 +127,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
             Tab(text: 'Gen X'),
             Tab(text: 'Millennials'),
             Tab(text: 'Gen Z'),
+            Tab(text: 'Gen Alpha'),
           ],
         ),
       ),
