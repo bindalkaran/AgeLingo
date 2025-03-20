@@ -41,6 +41,11 @@ jobs:
           touch .nojekyll
           sed -i 's/<base href="$FLUTTER_BASE_HREF">/<base href="\/">/' index.html
           echo "agelingo.com" > CNAME
+          
+          # Fix service worker paths if present
+          if [ -f "flutter_service_worker.js" ]; then
+            sed -i 's/"\/":/"":/' flutter_service_worker.js
+          fi
       
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
