@@ -3,148 +3,121 @@ import 'package:flutter/services.dart';
 
 class AnimatedGradientButton extends StatefulWidget {
   final String label;
-  final VoidCallback onPressed;
-  final Widget? icon;
+  final IconData? icon;
+  final Function()? onPressed;
   final List<Color> gradientColors;
-  final double height;
-  final double width;
-  final EdgeInsets padding;
-  final BorderRadius? borderRadius;
   final bool isLoading;
+  final bool isWide;
+  final double? width;
+  final double? height;
 
   const AnimatedGradientButton({
     Key? key,
     required this.label,
-    required this.onPressed,
-    required this.gradientColors,
     this.icon,
-    this.height = 56.0,
-    this.width = double.infinity,
-    this.padding = const EdgeInsets.symmetric(horizontal: 24.0),
-    this.borderRadius,
+    this.onPressed,
+    required this.gradientColors,
     this.isLoading = false,
+    this.isWide = false,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
-  State<AnimatedGradientButton> createState() => _AnimatedGradientButtonState();
+  _AnimatedGradientButtonState createState() => _AnimatedGradientButtonState();
 }
 
-class _AnimatedGradientButtonState extends State<AnimatedGradientButton> 
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _opacityAnimation;
+class _AnimatedGradientButtonState extends State<AnimatedGradientButton> {
+  bool _isPressed = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    );
-
-    _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.95,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _opacityAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.8,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
+  // Simplified animation approach for better web performance
+  void _handleTapDown(TapDownDetails details) {
+    HapticFeedback.lightImpact();
+    setState(() {
+      _isPressed = true;
+    });
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void _handleTapUp(TapUpDetails details) {
+    setState(() {
+      _isPressed = false;
+    });
+    if (widget.onPressed != null) {
+      widget.onPressed!();
+    }
+  }
+
+  void _handleTapCancel() {
+    setState(() {
+      _isPressed = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) {
-        if (!widget.isLoading) {
-          HapticFeedback.lightImpact();
-          _controller.forward();
-        }
-      },
-      onTapUp: (_) {
-        if (!widget.isLoading) {
-          _controller.reverse();
-        }
-      },
-      onTapCancel: () {
-        if (!widget.isLoading) {
-          _controller.reverse();
-        }
-      },
-      onTap: widget.isLoading ? null : widget.onPressed,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: _scaleAnimation.value,
-            child: Opacity(
-              opacity: _opacityAnimation.value,
-              child: child,
-            ),
-          );
-        },
-        child: Container(
-          height: widget.height,
-          width: widget.width,
-          padding: widget.padding,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: widget.gradientColors,
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: widget.borderRadius ?? BorderRadius.circular(16.0),
-            boxShadow: [
-              BoxShadow(
-                color: widget.gradientColors.last.withOpacity(0.3),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
+      onTapDown: _handleTapDown,
+      onTapUp: _handleTapUp,
+      onTapCancel: _handleTapCancel,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInOut,
+        width: widget.isWide ? double.infinity : widget.width,
+        height: widget.height ?? 50,
+        transform: Matrix4.identity()..scale(_isPressed ? 0.97 : 1.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: widget.gradientColors,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          child: Center(
-            child: widget.isLoading
-                ? SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 2.5,
-                    ),
-                  )
-                : Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (widget.icon != null) ...[
-                        widget.icon!,
-                        SizedBox(width: 12),
-                      ],
-                      Text(
-                        widget.label,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
+          borderRadius: BorderRadius.circular(12),
+          // Use a conditional box shadow to improve web performance
+          boxShadow: _isPressed ? [] : [
+            BoxShadow(
+              color: widget.gradientColors.first.withOpacity(0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Center(
+              child: widget.isLoading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
-                    ],
-                  ),
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (widget.icon != null) ...[
+                          Icon(
+                            widget.icon,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                        Text(
+                          widget.label,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+            ),
           ),
         ),
       ),

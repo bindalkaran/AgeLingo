@@ -602,16 +602,30 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
             )
           else
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 16, top: 8),
-                itemCount: _filteredTerms.length,
-                itemBuilder: (context, index) {
-                  final term = _filteredTerms[index];
-                  return AnimatedTermCard(
-                    term: term,
-                    onTap: () => _showTermDetails(term),
-                  );
+              // Replace ListView with a more optimized version that doesn't auto-refresh
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (ScrollNotification scrollInfo) {
+                  // Prevent the default scroll-to-refresh behavior
+                  return true;
                 },
+                child: ListView.builder(
+                  key: PageStorageKey<String>('termsList_${_selectedGeneration}'),
+                  padding: const EdgeInsets.only(bottom: 16, top: 8),
+                  // Use physics that works better on web
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: _filteredTerms.length,
+                  // Only build items when they're visible
+                  cacheExtent: 500, // Cache items ahead/behind to reduce rebuilds
+                  itemBuilder: (context, index) {
+                    // Lazy loading approach - only build items as they're needed
+                    final term = _filteredTerms[index];
+                    return AnimatedTermCard(
+                      key: ValueKey('term_${term.word}_${term.generation}'),
+                      term: term,
+                      onTap: () => _showTermDetails(term),
+                    );
+                  },
+                ),
               ),
             ),
         ],

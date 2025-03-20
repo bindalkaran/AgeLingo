@@ -16,6 +16,9 @@ class SettingsProvider extends ChangeNotifier {
   String get defaultTargetGeneration => _defaultTargetGeneration;
   bool get enableSpeechToText => _enableSpeechToText;
   List<String> get searchHistory => _searchHistory;
+  
+  // Add ThemeMode getter for the MaterialApp
+  ThemeMode get themeMode => _isDarkMode ? ThemeMode.dark : ThemeMode.light;
 
   SettingsProvider() {
     _loadSettings();

@@ -86,14 +86,6 @@ class HomeScreen extends StatelessWidget {
                 // Dictionary Button
                 AnimatedGradientButton(
                   label: 'Dictionary',
-                  icon: const Icon(
-                    Icons.book,
-                    color: Colors.white,
-                  ),
-                  gradientColors: [
-                    AppTheme.primaryColor,
-                    AppTheme.primaryColor.withBlue(AppTheme.primaryColor.blue - 40),
-                  ],
                   onPressed: () {
                     HapticFeedback.mediumImpact();
                     Navigator.push(
@@ -103,6 +95,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  gradientColors: const [
+                    Color(0xFF6A11CB),
+                    Color(0xFF2575FC),
+                  ],
+                  icon: Icons.menu_book,
                 ),
                 
                 const SizedBox(height: 20),
@@ -110,14 +107,6 @@ class HomeScreen extends StatelessWidget {
                 // Translator Button
                 AnimatedGradientButton(
                   label: 'Translator',
-                  icon: const Icon(
-                    Icons.translate,
-                    color: Colors.white,
-                  ),
-                  gradientColors: [
-                    AppTheme.secondaryColor,
-                    AppTheme.secondaryColor.withRed(AppTheme.secondaryColor.red - 40),
-                  ],
                   onPressed: () {
                     HapticFeedback.mediumImpact();
                     Navigator.push(
@@ -127,6 +116,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  gradientColors: const [
+                    Color(0xFF11998E),
+                    Color(0xFF38EF7D),
+                  ],
+                  icon: Icons.translate,
                 ),
                 
                 const SizedBox(height: 20),
@@ -134,14 +128,6 @@ class HomeScreen extends StatelessWidget {
                 // Custom Terms Button
                 AnimatedGradientButton(
                   label: 'Custom Terms',
-                  icon: const Icon(
-                    Icons.edit_note,
-                    color: Colors.white,
-                  ),
-                  gradientColors: [
-                    Colors.teal,
-                    Colors.teal.withGreen(Colors.teal.green - 40),
-                  ],
                   onPressed: () {
                     HapticFeedback.mediumImpact();
                     Navigator.push(
@@ -151,6 +137,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  gradientColors: const [
+                    Color(0xFFFF4E50),
+                    Color(0xFFF9D423),
+                  ],
+                  icon: Icons.edit,
                 ),
                 
                 const SizedBox(height: 40),

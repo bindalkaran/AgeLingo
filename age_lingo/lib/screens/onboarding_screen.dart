@@ -196,10 +196,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                   // Next or Get Started button
                   AnimatedGradientButton(
                     label: _isLastPage ? "Get Started" : "Next",
-                    icon: Icon(
-                      _isLastPage ? Icons.rocket_launch : Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
+                    icon: _isLastPage ? Icons.rocket_launch : Icons.arrow_forward,
                     gradientColors: [
                       _pages[_currentPage].color,
                       _pages[_currentPage].color.withOpacity(0.7),

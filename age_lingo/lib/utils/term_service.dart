@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:age_lingo/models/term.dart';
@@ -33,35 +34,65 @@ class TranslatedWord {
   });
 }
 
-class TermService {
+class TermService extends ChangeNotifier {
   List<Term> _terms = [];
   List<Term> _customTerms = [];
   static final TermService _instance = TermService._internal();
 
-  factory TermService() {
-    return _instance;
-  }
+  factory TermService() => _instance;
 
   TermService._internal();
 
   Future<void> loadTerms() async {
-    // Load built-in terms
-    final String response = await rootBundle.loadString('assets/data/terms.json');
-    final data = json.decode(response);
-    _terms = (data['terms'] as List).map((term) => Term.fromJson(term)).toList();
-    
-    // Load custom terms
-    await _loadCustomTerms();
+    try {
+      // Optimize loading by checking if terms are already loaded
+      if (_terms.isNotEmpty) {
+        return;
+      }
+
+      // Load built-in terms from JSON file
+      final String response = await rootBundle.loadString('assets/data/terms.json');
+      final data = json.decode(response);
+      
+      // Process terms in chunks to prevent UI freezing
+      await _processTermsInChunks(data['terms']);
+      
+      // Load custom terms from shared preferences
+      final prefs = await SharedPreferences.getInstance();
+      final String? customTermsJson = prefs.getString('custom_terms');
+      
+      if (customTermsJson != null) {
+        final List<dynamic> customTermsData = json.decode(customTermsJson);
+        _customTerms = customTermsData.map((data) => Term.fromJson(data)).toList();
+      }
+      
+      _terms = [..._terms, ..._customTerms];
+      notifyListeners();
+    } catch (e) {
+      print('Error loading terms: $e');
+      // Initialize with empty lists if loading fails
+      _terms = [];
+      _customTerms = [];
+      notifyListeners();
+    }
   }
   
-  Future<void> _loadCustomTerms() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? customTermsJson = prefs.getString('custom_terms');
+  // Process terms in chunks to prevent UI freezing
+  Future<void> _processTermsInChunks(List<dynamic> termsData) async {
+    const int chunkSize = 50; // Process 50 terms at a time
     
-    if (customTermsJson != null) {
-      final List<dynamic> decodedList = json.decode(customTermsJson);
-      _customTerms = decodedList.map((item) => Term.fromJson(item)).toList();
+    for (int i = 0; i < termsData.length; i += chunkSize) {
+      final int end = (i + chunkSize < termsData.length) ? i + chunkSize : termsData.length;
+      final chunk = termsData.sublist(i, end);
+      
+      _terms.addAll(chunk.map((data) => Term.fromJson(data)).toList());
+      
+      // Allow UI to update between chunks
+      await Future.delayed(const Duration(milliseconds: 1));
     }
+    
+    // Sort terms alphabetically for better user experience
+    _terms.sort((a, b) => a.word.toLowerCase().compareTo(b.word.toLowerCase()));
   }
   
   Future<void> _saveCustomTerms() async {
