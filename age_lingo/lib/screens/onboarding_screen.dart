@@ -28,28 +28,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
     OnboardingPage(
       title: "Welcome to AgeLingo",
       description: "Bridge the generational language gap and understand expressions across all ages",
-      image: "assets/images/onboarding1.png",
       icon: Icons.translate,
       color: AppTheme.primaryColor,
     ),
     OnboardingPage(
       title: "Extensive Dictionary",
       description: "Browse through hundreds of terms and phrases from Boomers to Gen Alpha",
-      image: "assets/images/onboarding2.png",
       icon: Icons.book,
       color: AppTheme.secondaryColor,
     ),
     OnboardingPage(
       title: "Smart Translator",
       description: "Instantly translate language between different generations",
-      image: "assets/images/onboarding3.png",
       icon: Icons.switch_access_shortcut,
       color: AppTheme.boomersColor,
     ),
     OnboardingPage(
       title: "Ready to Start?",
       description: "Begin your journey to understanding all generations",
-      image: "assets/images/onboarding4.png",
       icon: Icons.emoji_people,
       color: AppTheme.genZColor,
     ),
@@ -225,7 +221,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Image or Icon placeholder
+          // Icon with colored background
           Container(
             width: 180,
             height: 180,
@@ -273,14 +269,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
 class OnboardingPage {
   final String title;
   final String description;
-  final String image;
   final IconData icon;
   final Color color;
 
   OnboardingPage({
     required this.title,
     required this.description,
-    required this.image,
     required this.icon,
     required this.color,
   });

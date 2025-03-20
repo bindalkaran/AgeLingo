@@ -40,6 +40,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
+    
+    // Initialize the animation to fully visible if not showing onboarding
+    if (!_showOnboarding) {
+      _animationController.value = 1.0;
+    }
   }
   
   @override
@@ -49,11 +54,16 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
   
   void _onOnboardingComplete() {
+    // First refresh settings
+    _settingsProvider.refreshSettings();
+    
+    // Then update state
     setState(() {
       _showOnboarding = false;
     });
+    
+    // Then start the animation
     _animationController.forward(from: 0.0);
-    _settingsProvider.refreshSettings();
   }
 
   @override
@@ -88,17 +98,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           );
         },
       ),
-    );
-  }
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
     );
   }
 }
