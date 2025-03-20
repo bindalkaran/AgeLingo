@@ -36,9 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
   shared_preferences: ^2.2.0
-  speech_to_text: ^6.1.1
+  # speech_to_text: ^6.1.1  # Removed due to build issues
   url_launcher: ^6.1.10
-  share_plus: ^7.0.0
+  # share_plus dependency removed as it was causing build issues
 
 dev_dependencies:
   flutter_test:

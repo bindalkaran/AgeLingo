@@ -6,7 +6,6 @@ import 'package:age_lingo/widgets/generation_dropdown.dart';
 import 'package:age_lingo/utils/constants.dart';
 import 'package:age_lingo/widgets/app_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:share_plus/share_plus.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -20,11 +19,34 @@ class SettingsScreen extends StatelessWidget {
     }
   }
   
-  // Function to share the app
-  Future<void> _shareApp() async {
+  // Function to share the app - modified to show dialog instead of using share_plus
+  void _shareApp(BuildContext context) {
     const String shareText = 'Check out AgeLingo - an app that translates slang across generations (Baby Boomers, Gen X, Millennials, Gen Z, Gen Alpha)! https://agelingo.com';
     
-    await Share.share(shareText);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Share AgeLingo'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Copy the text below to share:'),
+              const SizedBox(height: 12),
+              SelectableText(shareText),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -323,7 +345,7 @@ class SettingsScreen extends StatelessWidget {
                 AppButton(
                   text: 'Share App',
                   icon: Icons.share,
-                  onPressed: _shareApp,
+                  onPressed: () => _shareApp(context),
                   width: 120,
                   height: 40,
                 ),

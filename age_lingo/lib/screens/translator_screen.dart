@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
+// import 'package:speech_to_text/speech_to_text.dart' as stt; // Removed due to build issues
 import 'package:age_lingo/utils/app_theme.dart';
 import 'package:age_lingo/utils/term_service.dart';
 import 'package:age_lingo/utils/settings_provider.dart';
@@ -24,7 +24,7 @@ class _TranslatorScreenState extends State<TranslatorScreen> {
   bool _isTranslating = false;
   bool _isListening = false;
   bool _showHistory = false;
-  final stt.SpeechToText _speech = stt.SpeechToText();
+  // final stt.SpeechToText _speech = stt.SpeechToText(); // Removed due to build issues
   
   // Suggestions for the user
   List<String> _examplePhrases = [];
@@ -32,7 +32,7 @@ class _TranslatorScreenState extends State<TranslatorScreen> {
   @override
   void initState() {
     super.initState();
-    _initSpeech();
+    // _initSpeech(); // Commented out due to speech_to_text removal
     
     // Set initial values from settings
     final settings = Provider.of<SettingsProvider>(context, listen: false);
@@ -52,35 +52,55 @@ class _TranslatorScreenState extends State<TranslatorScreen> {
     });
   }
 
-  void _initSpeech() async {
-    await _speech.initialize();
-    setState(() {});
-  }
+  // Speech initialization removed due to build issues
+  // void _initSpeech() async {
+  //   await _speech.initialize();
+  //   setState(() {});
+  // }
 
+  // Modified to show a message instead of starting speech recognition
   void _startListening() async {
+    // Show a message that speech recognition is not available
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Speech recognition is not available in this version.'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+    
+    // Old speech recognition code commented out
+    /*
     if (!_isListening) {
       bool available = await _speech.initialize();
       if (available) {
-        setState(() => _isListening = true);
+        setState(() {
+          _isListening = true;
+        });
         _speech.listen(
           onResult: (result) {
             setState(() {
               _inputController.text = result.recognizedWords;
-              if (result.finalResult) {
-                _isListening = false;
-              }
+              _isListening = false;
             });
           },
         );
       }
     }
+    */
   }
 
+  // Modified to simply set isListening to false
   void _stopListening() {
-    if (_isListening) {
-      _speech.stop();
-      setState(() => _isListening = false);
-    }
+    setState(() {
+      _isListening = false;
+    });
+    // Old speech recognition code commented out
+    /*
+    _speech.stop();
+    setState(() {
+      _isListening = false;
+    });
+    */
   }
 
   void _translate() async {
@@ -147,7 +167,7 @@ class _TranslatorScreenState extends State<TranslatorScreen> {
   @override
   void dispose() {
     _inputController.dispose();
-    _speech.cancel();
+    // _speech.cancel(); // Removed due to speech_to_text removal
     super.dispose();
   }
 
