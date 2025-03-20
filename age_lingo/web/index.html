@@ -34,24 +34,10 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
+    var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-  <script>
-    // No custom domain fix for GitHub Pages - handle base path correctly
-    window.flutterWebRenderer = "html";
-    
-    // Detect if we're running on GitHub Pages and update base href
-    if (window.location.hostname === 'bindalkaran.github.io' || 
-        window.location.hostname === 'agelingo.com' || 
-        window.location.hostname === 'www.agelingo.com') {
-      const base = document.querySelector('base');
-      if (base) {
-        base.href = '/AgeLingo/';
-      }
-    }
-  </script>
 </head>
 <body>
   <script>
@@ -70,4 +56,4 @@
     });
   </script>
 </body>
-</html>
+</html> 
