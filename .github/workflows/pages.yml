@@ -7,7 +7,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -17,8 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Build job
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,22 +29,25 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
       
-      - name: Get dependencies
+      - name: Install dependencies
         run: cd age_lingo && flutter pub get
-        
-      - name: Build web
-        run: cd age_lingo && flutter build web --release --base-href "/AgeLingo/"
       
-      - name: Create .nojekyll file
-        run: touch ./age_lingo/build/web/.nojekyll
+      - name: Build web app
+        run: cd age_lingo && flutter build web --release
       
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Fix for GitHub Pages
+        run: |
+          cd age_lingo/build/web
+          touch .nojekyll
+          sed -i 's/<base href="$FLUTTER_BASE_HREF">/<base href="\/">/' index.html
+          echo "agelingo.com" > CNAME
       
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: './age_lingo/build/web'
+          folder: age_lingo/build/web
+          branch: gh-pages
+          clean: true
   
   # Deployment job
   deploy:
@@ -53,7 +55,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-and-deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
