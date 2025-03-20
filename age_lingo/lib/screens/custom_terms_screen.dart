@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:age_lingo/models/term.dart';
-import 'package:age_lingo/utils/app_theme.dart';
 import 'package:age_lingo/utils/term_service.dart';
-import 'package:age_lingo/widgets/animated_gradient_button.dart';
+import 'package:age_lingo/widgets/term_card.dart';
+import 'package:age_lingo/utils/constants.dart';
 
 class CustomTermsScreen extends StatefulWidget {
   const CustomTermsScreen({Key? key}) : super(key: key);
@@ -13,333 +12,351 @@ class CustomTermsScreen extends StatefulWidget {
 }
 
 class _CustomTermsScreenState extends State<CustomTermsScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _wordController = TextEditingController();
-  final _definitionController = TextEditingController();
-  final _exampleController = TextEditingController();
-  final Map<String, TextEditingController> _translationControllers = {
-    'Boomers': TextEditingController(),
-    'Gen X': TextEditingController(),
-    'Millennials': TextEditingController(),
-    'Gen Z': TextEditingController(),
-    'Gen Alpha': TextEditingController(),
-  };
-  
-  String _selectedGeneration = 'Gen Z';
-  bool _isSubmitting = false;
   final TermService _termService = TermService();
-  
+  List<Term> _customTerms = [];
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    _termService.loadTerms();
+    _loadCustomTerms();
   }
-  
-  @override
-  void dispose() {
-    _wordController.dispose();
-    _definitionController.dispose();
-    _exampleController.dispose();
-    _translationControllers.forEach((_, controller) => controller.dispose());
-    super.dispose();
-  }
-  
-  void _resetForm() {
-    _wordController.clear();
-    _definitionController.clear();
-    _exampleController.clear();
-    _translationControllers.forEach((_, controller) => controller.clear());
+
+  void _loadCustomTerms() {
     setState(() {
-      _selectedGeneration = 'Gen Z';
-      _isSubmitting = false;
+      _customTerms = _termService.getCustomTerms();
+      _isLoading = false;
     });
   }
-  
-  Future<void> _submitForm() async {
-    if (_formKey.currentState?.validate() != true) {
-      return;
-    }
-    
-    setState(() {
-      _isSubmitting = true;
-    });
-    
-    // Haptic feedback
-    HapticFeedback.mediumImpact();
-    
-    try {
-      // Create translation map
-      final Map<String, String> translations = {};
-      _translationControllers.forEach((generation, controller) {
-        if (controller.text.isNotEmpty) {
-          translations[generation] = controller.text;
-        }
-      });
-      
-      // Create new term
-      final newTerm = Term(
-        word: _wordController.text.trim(),
-        definition: _definitionController.text.trim(),
-        generation: _selectedGeneration,
-        example: _exampleController.text.trim(),
-        translations: translations,
-      );
-      
-      // Add term to service
-      await _termService.addCustomTerm(newTerm);
-      
-      // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Term "${newTerm.word}" added successfully!'),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-      
-      // Reset form
-      _resetForm();
-    } catch (e) {
-      // Show error message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error adding term: ${e.toString()}'),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-    } finally {
-      setState(() {
-        _isSubmitting = false;
-      });
-    }
-  }
-  
+
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Custom Term'),
-        centerTitle: true,
-        elevation: 0,
+        title: const Text('Custom Terms'),
       ),
-      body: SafeArea(
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            padding: const EdgeInsets.all(24.0),
-            children: [
-              // Header
-              Text(
-                'Create Your Own Term',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Add slang or generational terms to your personal dictionary',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: isDarkMode ? Colors.white70 : Colors.black54,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 32),
-              
-              // Term section
-              Text(
-                'TERM DETAILS',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryColor,
-                  letterSpacing: 1.2,
-                ),
-              ),
-              const SizedBox(height: 16),
-              
-              // Word field
-              TextFormField(
-                controller: _wordController,
-                decoration: InputDecoration(
-                  labelText: 'Word or Phrase',
-                  hintText: 'Enter the slang term',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.text_fields),
-                ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please enter a word or phrase';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              
-              // Definition field
-              TextFormField(
-                controller: _definitionController,
-                decoration: InputDecoration(
-                  labelText: 'Definition',
-                  hintText: 'What does this term mean?',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.description),
-                ),
-                maxLines: 3,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please enter a definition';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              
-              // Example field
-              TextFormField(
-                controller: _exampleController,
-                decoration: InputDecoration(
-                  labelText: 'Example',
-                  hintText: 'Example sentence using this term',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.format_quote),
-                ),
-                maxLines: 2,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please provide an example';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              
-              // Generation selector
-              DropdownButtonFormField<String>(
-                value: _selectedGeneration,
-                decoration: InputDecoration(
-                  labelText: 'Generation',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.people),
-                ),
-                items: const [
-                  DropdownMenuItem(value: 'Boomers', child: Text('Boomers')),
-                  DropdownMenuItem(value: 'Gen X', child: Text('Gen X')),
-                  DropdownMenuItem(value: 'Millennials', child: Text('Millennials')),
-                  DropdownMenuItem(value: 'Gen Z', child: Text('Gen Z')),
-                  DropdownMenuItem(value: 'Gen Alpha', child: Text('Gen Alpha')),
-                ],
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      _selectedGeneration = value;
-                    });
-                  }
-                },
-              ),
-              const SizedBox(height: 32),
-              
-              // Translations section
-              Text(
-                'TRANSLATIONS FOR OTHER GENERATIONS',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryColor,
-                  letterSpacing: 1.2,
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'How would other generations say this? (Optional)',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              const SizedBox(height: 16),
-              
-              // Translation fields for each generation
-              ..._translationControllers.entries
-                  .where((entry) => entry.key != _selectedGeneration)
-                  .map((entry) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextFormField(
-                      controller: entry.value,
-                      decoration: InputDecoration(
-                        labelText: entry.key,
-                        hintText: 'Equivalent term for ${entry.key}',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.translate,
-                          color: _getGenerationColor(entry.key),
-                        ),
-                      ),
-                    ),
-                  ))
-                  .toList(),
-              
-              const SizedBox(height: 32),
-              
-              // Submit button
-              AnimatedGradientButton(
-                label: _isSubmitting ? 'Adding...' : 'Add Term',
-                icon: const Icon(
-                  Icons.add_circle,
-                  color: Colors.white,
-                ),
-                gradientColors: [
-                  AppTheme.primaryColor,
-                  AppTheme.primaryColor.withBlue(AppTheme.primaryColor.blue - 40),
-                ],
-                isLoading: _isSubmitting,
-                onPressed: _submitForm,
-              ),
-              const SizedBox(height: 16),
-              
-              // Reset button
-              TextButton(
-                onPressed: _resetForm,
-                child: const Text('Reset Form'),
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
+      body: _isLoading 
+        ? const Center(child: CircularProgressIndicator())
+        : _customTerms.isEmpty 
+          ? _buildEmptyState()
+          : _buildTermsList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showAddEditTermDialog(),
+        child: const Icon(Icons.add),
       ),
     );
   }
-  
-  Color _getGenerationColor(String generation) {
-    switch (generation) {
-      case 'Boomers':
-        return AppTheme.boomersColor;
-      case 'Gen X':
-        return AppTheme.genXColor;
-      case 'Millennials':
-        return AppTheme.millennialsColor;
-      case 'Gen Z':
-        return AppTheme.genZColor;
-      case 'Gen Alpha':
-        return AppTheme.genAlphaColor;
-      default:
-        return Colors.grey;
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.description_outlined,
+            size: 80,
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'No Custom Terms Yet',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Add your own generation-specific terms to enhance your translation experience',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton.icon(
+            onPressed: () => _showAddEditTermDialog(),
+            icon: const Icon(Icons.add),
+            label: const Text('Add Your First Term'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTermsList() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: _customTerms.length,
+      itemBuilder: (context, index) {
+        final term = _customTerms[index];
+        return Dismissible(
+          key: Key(term.word + term.generation),
+          background: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 20),
+            child: const Icon(Icons.delete, color: Colors.white),
+          ),
+          direction: DismissDirection.endToStart,
+          confirmDismiss: (direction) async {
+            return await showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text('Delete Term'),
+                content: Text('Are you sure you want to delete "${term.word}"?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text('Delete'),
+                  ),
+                ],
+              ),
+            );
+          },
+          onDismissed: (direction) async {
+            await _termService.deleteCustomTerm(term.word, term.generation);
+            setState(() {
+              _customTerms.removeAt(index);
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${term.word} has been deleted')),
+            );
+          },
+          child: Card(
+            elevation: 2,
+            margin: const EdgeInsets.only(bottom: 16),
+            child: InkWell(
+              onTap: () => _showAddEditTermDialog(term: term),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            term.word,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        Chip(
+                          label: Text(term.generation),
+                          backgroundColor: getGenerationColor(term.generation).withOpacity(0.2),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(term.definition),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Example: ${term.example}',
+                      style: const TextStyle(fontStyle: FontStyle.italic),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Translations:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 4),
+                    ...term.translations.entries.map((entry) => 
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Row(
+                          children: [
+                            Text(
+                              '${entry.key}: ',
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(entry.value.isEmpty ? 'Not specified' : entry.value),
+                          ],
+                        ),
+                      ),
+                    ).toList(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showAddEditTermDialog({Term? term}) {
+    // Controllers
+    TextEditingController wordController = TextEditingController(text: term?.word ?? '');
+    TextEditingController definitionController = TextEditingController(text: term?.definition ?? '');
+    TextEditingController exampleController = TextEditingController(text: term?.example ?? '');
+    
+    Map<String, TextEditingController> translationControllers = {};
+    
+    // Set up controllers for translations
+    for (var generation in generations) {
+      if (term != null && term.generation != generation) {
+        translationControllers[generation] = TextEditingController(
+          text: term.translations[generation] ?? ''
+        );
+      } else if (term == null) {
+        translationControllers[generation] = TextEditingController();
+      }
     }
+    
+    // Track the selected generation
+    String selectedGeneration = term?.generation ?? generations.first;
+    bool isEditing = term != null;
+    String originalWord = term?.word ?? '';
+    String originalGeneration = term?.generation ?? '';
+    
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: Text(isEditing ? 'Edit Term' : 'Add New Term'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: wordController,
+                      decoration: const InputDecoration(
+                        labelText: 'Term',
+                        hintText: 'Enter the word or phrase',
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Generation:'),
+                    DropdownButton<String>(
+                      value: selectedGeneration,
+                      isExpanded: true,
+                      onChanged: (value) {
+                        if (value != null) {
+                          setDialogState(() {
+                            selectedGeneration = value;
+                          });
+                        }
+                      },
+                      items: generations.map((generation) {
+                        return DropdownMenuItem<String>(
+                          value: generation,
+                          child: Text(generation),
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: definitionController,
+                      decoration: const InputDecoration(
+                        labelText: 'Definition',
+                        hintText: 'What does this term mean?',
+                      ),
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: exampleController,
+                      decoration: const InputDecoration(
+                        labelText: 'Example',
+                        hintText: 'Example usage of this term',
+                      ),
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Translations for other generations:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    ...generations.where((gen) => gen != selectedGeneration).map((generation) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: TextField(
+                          controller: translationControllers[generation],
+                          decoration: InputDecoration(
+                            labelText: generation,
+                            hintText: 'Translation for $generation',
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    // Validate inputs
+                    if (wordController.text.isEmpty || definitionController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Term and definition are required')),
+                      );
+                      return;
+                    }
+                    
+                    // Create translations map
+                    Map<String, String> translations = {};
+                    for (var generation in generations) {
+                      if (generation != selectedGeneration) {
+                        translations[generation] = translationControllers[generation]!.text;
+                      }
+                    }
+                    
+                    // Create the term
+                    Term newTerm = Term(
+                      word: wordController.text,
+                      generation: selectedGeneration,
+                      definition: definitionController.text,
+                      translations: translations,
+                      example: exampleController.text,
+                    );
+                    
+                    bool success;
+                    if (isEditing) {
+                      success = await _termService.editCustomTerm(
+                        originalWord, 
+                        originalGeneration,
+                        newTerm
+                      );
+                    } else {
+                      success = await _termService.addCustomTerm(newTerm);
+                    }
+                    
+                    if (success) {
+                      _loadCustomTerms();
+                      Navigator.of(context).pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(isEditing 
+                            ? 'Term updated successfully' 
+                            : 'New term added successfully'
+                          ),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('A term with this name already exists'),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(isEditing ? 'Update' : 'Add'),
+                ),
+              ],
+            );
+          }
+        );
+      },
+    );
   }
 } 

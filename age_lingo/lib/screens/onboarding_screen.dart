@@ -27,21 +27,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
   final List<OnboardingPage> _pages = [
     OnboardingPage(
       title: "Welcome to AgeLingo",
-      description: "Bridge the generational language gap and understand slang across all ages",
+      description: "Bridge the generational language gap and understand expressions across all ages",
       image: "assets/images/onboarding1.png",
       icon: Icons.translate,
       color: AppTheme.primaryColor,
     ),
     OnboardingPage(
       title: "Extensive Dictionary",
-      description: "Browse through hundreds of slang terms from Boomers to Gen Alpha",
+      description: "Browse through hundreds of terms and phrases from Boomers to Gen Alpha",
       image: "assets/images/onboarding2.png",
       icon: Icons.book,
       color: AppTheme.secondaryColor,
     ),
     OnboardingPage(
       title: "Smart Translator",
-      description: "Instantly translate slang between different generations",
+      description: "Instantly translate language between different generations",
       image: "assets/images/onboarding3.png",
       icon: Icons.switch_access_shortcut,
       color: AppTheme.boomersColor,

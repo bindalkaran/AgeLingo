@@ -7,13 +7,14 @@ import 'package:age_lingo/utils/settings_provider.dart';
 import 'package:age_lingo/widgets/term_card.dart';
 import 'package:age_lingo/widgets/animated_term_card.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class DictionaryScreen extends StatefulWidget {
-  final int initialTabIndex;
+  final String? initialGeneration;
 
   const DictionaryScreen({
-    Key? key,
-    this.initialTabIndex = 0,
+    Key? key, 
+    this.initialGeneration,
   }) : super(key: key);
 
   @override
@@ -29,20 +30,40 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
   bool _isLoading = true;
   Term? _selectedTerm;
   bool _showDetailModal = false;
-  String _lastSearchQuery = '';
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-      length: 6,
-      vsync: this,
-      initialIndex: widget.initialTabIndex,
-    );
+    _tabController = TabController(length: 6, vsync: this);
     _tabController.addListener(_handleTabChange);
     
-    // Update the selected generation based on initial tab index
-    _updateSelectedGenerationFromTabIndex(widget.initialTabIndex);
+    // Set initial generation if provided
+    if (widget.initialGeneration != null) {
+      _selectedGeneration = widget.initialGeneration!;
+      
+      // Set the tab based on the initial generation
+      switch (_selectedGeneration) {
+        case 'All':
+          _tabController.index = 0;
+          break;
+        case 'Boomers':
+          _tabController.index = 1;
+          break;
+        case 'Gen X':
+          _tabController.index = 2;
+          break;
+        case 'Millennials':
+          _tabController.index = 3;
+          break;
+        case 'Gen Z':
+          _tabController.index = 4;
+          break;
+        case 'Gen Alpha':
+          _tabController.index = 5;
+          break;
+      }
+    }
     
     _loadTerms();
   }
@@ -61,8 +82,12 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
     });
   }
 
-  void _updateSelectedGenerationFromTabIndex(int index) {
-    switch (index) {
+  void _handleTabChange() {
+    if (_tabController.indexIsChanging) {
+      return;
+    }
+    
+    switch (_tabController.index) {
       case 0:
         _selectedGeneration = 'All';
         break;
@@ -82,15 +107,27 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
         _selectedGeneration = 'Gen Alpha';
         break;
     }
+    
+    _filterTerms();
   }
 
-  void _handleTabChange() {
-    if (_tabController.indexIsChanging) {
-      return;
+  void _onSearchChanged(String query) {
+    // Cancel previous debounce timer
+    if (_debounce?.isActive ?? false) {
+      _debounce!.cancel();
     }
     
-    _updateSelectedGenerationFromTabIndex(_tabController.index);
-    _filterTerms();
+    // Set new debounce timer
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      _filterTerms();
+    });
+  }
+
+  void _addToSearchHistory(String query) {
+    if (query.isNotEmpty) {
+      Provider.of<SettingsProvider>(context, listen: false)
+          .addToSearchHistory(query);
+    }
   }
 
   void _filterTerms() {
@@ -117,22 +154,17 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
     });
   }
 
-  void _submitSearch(String query) {
-    // Only add to history if the query is different from the last one
-    // and if it's not empty and there are results
-    if (query.isNotEmpty && 
-        query != _lastSearchQuery && 
-        _filteredTerms.isNotEmpty) {
-      Provider.of<SettingsProvider>(context, listen: false)
-          .addToSearchHistory(query);
-      _lastSearchQuery = query;
-    }
-  }
-
   void _clearSearch() {
     _searchController.clear();
-    _lastSearchQuery = '';
     _filterTerms();
+  }
+
+  void _performSearch() {
+    _filterTerms();
+    // Only add to search history when user explicitly performs a search
+    _addToSearchHistory(_searchController.text);
+    // Hide keyboard
+    FocusScope.of(context).unfocus();
   }
   
   void _showTermDetails(Term term) {
@@ -363,6 +395,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
     _searchController.dispose();
     _tabController.removeListener(_handleTabChange);
     _tabController.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
@@ -406,33 +439,53 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
                 ),
               ],
             ),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search terms...',
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _searchController.text.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: _clearSearch,
-                      )
-                    : null,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Search terms...',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: _clearSearch,
+                            )
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Theme.of(context).brightness == Brightness.dark 
+                          ? Colors.black12 
+                          : Colors.grey.shade100,
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 16,
+                      ),
+                    ),
+                    onChanged: _onSearchChanged,
+                    onSubmitted: (_) => _performSearch(),
+                    textInputAction: TextInputAction.search,
+                  ),
                 ),
-                filled: true,
-                fillColor: Theme.of(context).brightness == Brightness.dark 
-                    ? Colors.black12 
-                    : Colors.grey.shade100,
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 16,
-                ),
-              ),
-              onChanged: (_) => _filterTerms(),
-              onSubmitted: _submitSearch,
-              textInputAction: TextInputAction.search,
+                if (_searchController.text.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: ElevatedButton(
+                      onPressed: _performSearch,
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text('Search'),
+                    ),
+                  ),
+              ],
             ),
           ),
           
@@ -494,9 +547,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> with SingleTickerPr
                               label: Text(query),
                               onPressed: () {
                                 _searchController.text = query;
-                                _lastSearchQuery = query;
-                                _filterTerms();
-                                _submitSearch(query);
+                                _performSearch();
                               },
                               backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
                               shape: StadiumBorder(

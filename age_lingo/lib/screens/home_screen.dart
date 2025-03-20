@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Understand terms and expressions across all generations',
+                        'Understand language across all generations',
                         style: TextStyle(
                           fontSize: 15,
                           color: isDarkMode ? Colors.white70 : Colors.black54,
@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   gradientColors: [
                     Colors.teal,
-                    Colors.teal.shade700,
+                    Colors.teal.withGreen(Colors.teal.green - 40),
                   ],
                   onPressed: () {
                     HapticFeedback.mediumImpact();
@@ -172,7 +172,6 @@ class HomeScreen extends StatelessWidget {
                   'Born 1946-1964',
                   AppTheme.boomersColor,
                   isDarkMode,
-                  1, // Tab index for Boomers
                 ),
                 _buildGenerationCard(
                   context,
@@ -180,7 +179,6 @@ class HomeScreen extends StatelessWidget {
                   'Born 1965-1980',
                   AppTheme.genXColor,
                   isDarkMode,
-                  2, // Tab index for Gen X
                 ),
                 _buildGenerationCard(
                   context,
@@ -188,7 +186,6 @@ class HomeScreen extends StatelessWidget {
                   'Born 1981-1996',
                   AppTheme.millennialsColor,
                   isDarkMode,
-                  3, // Tab index for Millennials
                 ),
                 _buildGenerationCard(
                   context,
@@ -196,7 +193,6 @@ class HomeScreen extends StatelessWidget {
                   'Born 1997-2012',
                   AppTheme.genZColor,
                   isDarkMode,
-                  4, // Tab index for Gen Z
                 ),
                 _buildGenerationCard(
                   context,
@@ -204,7 +200,6 @@ class HomeScreen extends StatelessWidget {
                   'Born 2013-Present',
                   AppTheme.genAlphaColor,
                   isDarkMode,
-                  5, // Tab index for Gen Alpha
                 ),
               ],
             ),
@@ -220,15 +215,17 @@ class HomeScreen extends StatelessWidget {
     String yearRange,
     Color color,
     bool isDarkMode,
-    int tabIndex,
   ) {
     return GestureDetector(
       onTap: () {
         HapticFeedback.selectionClick();
+        // Navigate to dictionary screen with the specific generation selected
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DictionaryScreen(initialTabIndex: tabIndex),
+            builder: (context) => DictionaryScreen(
+              initialGeneration: generation,
+            ),
           ),
         );
       },
