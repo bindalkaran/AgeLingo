@@ -22,69 +22,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Build job
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       
-      - name: Debug Info
-        run: |
-          echo "GitHub workspace: $GITHUB_WORKSPACE"
-          echo "Current directory: $(pwd)"
-          echo "Directory listing:"
-          ls -la
-      
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - name: Setup Flutter 💻
+        uses: subosito/flutter-action@v1
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
       
-      - name: Verify Flutter
+      - name: Flutter Info 📋
         run: |
           flutter --version
-          flutter doctor -v
+          flutter doctor
       
-      - name: Install dependencies
-        run: cd age_lingo && flutter pub get
-      
-      - name: Build web app
-        run: cd age_lingo && flutter build web --release
-      
-      - name: Debug Web Build
+      - name: Install Dependencies 📦
         run: |
-          echo "Web build directory content:"
-          ls -la age_lingo/build/web/
+          cd age_lingo
+          flutter pub get
       
-      - name: Fix for GitHub Pages
+      - name: Build Flutter Web 🏗️
+        run: |
+          cd age_lingo
+          flutter build web --release
+          
+      - name: Setup Web Files 🌐
         run: |
           cd age_lingo/build/web
           touch .nojekyll
-          sed -i 's/<base href="$FLUTTER_BASE_HREF">/<base href="\/">/' index.html
           echo "agelingo.com" > CNAME
+          sed -i 's/<base href="\$FLUTTER_BASE_HREF">/<base href="\/">/' index.html
+          cat index.html | grep base
           
-          # Fix service worker paths if present
-          if [ -f "flutter_service_worker.js" ]; then
-            sed -i 's/"\/":/"":/' flutter_service_worker.js
-          fi
-          
-          # Verify fixed files
-          echo "Content of index.html with fixed base href:"
-          grep "<base" index.html
-          echo "Files after fixing:"
-          ls -la
-      
-      # Direct deployment using simpler approach
-      - name: Deploy to GitHub Pages
-        run: |
-          cd age_lingo/build/web
-          git init
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git branch -M gh-pages
-          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git push -f origin gh-pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: age_lingo/build/web
+          clean: true
+          single-commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
