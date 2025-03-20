@@ -17,14 +17,14 @@ jobs:
           channel: 'stable'
       
       - name: Get dependencies
-        run: flutter pub get
+        run: cd age_lingo && flutter pub get
         
       - name: Build web
-        run: flutter build web --release
+        run: cd age_lingo && flutter build web --release
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          cname: ${{ vars.CNAME }}  # This will use CNAME variable if set in repository 
+          publish_dir: ./age_lingo/build/web
+          cname: agelingo.com 
