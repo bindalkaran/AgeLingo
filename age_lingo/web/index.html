@@ -18,21 +18,56 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="AgeLingo - Translate slang across generations (Baby Boomers, Gen X, Millennials, Gen Z, Gen Alpha)">
 
   <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="age_lingo">
+  <meta name="apple-mobile-web-app-title" content="AgeLingo">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png">
 
-  <title>age_lingo</title>
+  <title>AgeLingo</title>
   <link rel="manifest" href="manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = null;
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+  <script>
+    // No custom domain fix for GitHub Pages - handle base path correctly
+    window.flutterWebRenderer = "html";
+    
+    // Detect if we're running on GitHub Pages and update base href
+    if (window.location.hostname === 'bindalkaran.github.io' || 
+        window.location.hostname === 'agelingo.com' || 
+        window.location.hostname === 'www.agelingo.com') {
+      const base = document.querySelector('base');
+      if (base) {
+        base.href = '/AgeLingo/';
+      }
+    }
+  </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
